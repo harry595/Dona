@@ -9,9 +9,13 @@ app_name = 'dona'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'), # ok,
-    path('monthly_ranking/', views.monthly_ranking, name='monthly_ranking'), # ok,
-    path('yearly_ranking/', views.yearly_ranking, name='yearly_ranking'), # ok,
+    path('', views.index, name='index'), 
+    path('monthly_ranking/', views.monthly_ranking, name='monthly_ranking'), 
+    path('yearly_ranking/', views.yearly_ranking, name='yearly_ranking'), 
+    path('help/', views.help, name='help'),
+    path('login/', views.login, name='login'),
+    path('contact/', views.contact, name='contact'),
+    path('message/', views.message, name='message'),
     
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT})
 ]

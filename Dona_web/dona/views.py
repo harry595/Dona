@@ -23,8 +23,16 @@ from django.contrib.auth.models import User
 #메인 페이지 - / - index.html
 def index(request):  
     return render(request,'index.html')
+def message(request):   
+    return render(request, 'message.html')
 
 def monthly_ranking(request):   
     return render(request, 'monthly_ranking.html')
+def login(request):   
+    return render(request, 'login.html')
+def help(request):   
+    return render(request, 'help.html')
+def contact(request):   
+    return render(request, 'contact.html')
 def yearly_ranking(request):   
     return render(request, 'yearly_ranking.html')

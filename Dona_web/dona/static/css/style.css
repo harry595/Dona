@@ -2413,6 +2413,15 @@ ul {
   width: 100%;
   height: 880px;
 }
+.banner_part .banner_text .banner_text_iner h3 {
+  font-size: 40px;
+  color: black;
+  width: 50%;
+  height: 150px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
 
 /* line 32, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
 .banner_part .banner_text .banner_text_iner h2 {
@@ -2443,6 +2452,27 @@ ul {
   font-size: 20px;
   color: black;
   height: 100px;
+}
+.banner_part .helptable table {
+  border: 1px solid #444444;
+  width: 4000px;
+  font-size: 20px;
+  color: black;
+  display: table-cell;
+  vertical-align: middle;
+}
+.banner_part .banner_text .helptable table td {
+  width: 300px;
+  font-size: 15px;
+  color: black;
+  height: 40px;
+}
+
+.banner_part .helptable table th {
+  width: 300px;
+  font-size: 20px;
+  color: black;
+  height: 40px;
 }
 
 @media (max-width: 575px) {

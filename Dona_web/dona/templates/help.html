@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+  <style type="text/css">
+      @FONT-FACE {
+        font-family: "Bamin";
+        src: url("{% static 'fonts/BMJUA_ttf.ttf' %}");
+    }
+    h2{font-family: "Bamin";}
+  </style>
+  <!-- banner part start-->
+  <section class="banner_part" style="height: 2000px; background-color: #F8F9FA; ">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+          <div class="banner_text text-center">
+            <div class="banner_text_iner">
+              <h2>DO  도움 나눔 게시판  NA</h2>
+            </div>
+            <div class="helptable">
+              <table border="0" style="padding-top:0%">
+                <colgroup>
+                  <col width="10%"/>
+                  <col width="50%"/>
+                  <col width="10%"/>
+                  <col width="20%"/>
+                  <col width="10%"/>
+                </colgroup>
+                <th >Index</th>
+                <th>제목</th>
+                <th>지역</th>
+                <th>날짜</th>
+                <th>조회수</th>
+                <tr><!-- 첫번째 줄 시작 -->
+                    <td>1</td>
+                    <td>내일 이삿짐 옮기는거 도와줄사람 구해요ㅠㅠ</td>
+                    <td>산본 2동</td>
+                    <td>2020.09.19</td>
+                    <td>10</td>
+                </tr><!-- 첫번째 줄 끝 -->
+                <tr><!-- 두번째 줄 시작 -->
+                    <td>2</td>
+                    <td>저희 집 강아지 2틀동안 맡아주실 분 있나요??....</td>
+                    <td>당동</td>
+                    <td>2020.09.20</td>
+                    <td>2</td>
+                </tr><!-- 두번째 줄 끝 -->
+              </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
