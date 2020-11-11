@@ -75,15 +75,14 @@ TEMPLATES = [
     },
 ]
 
-
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+AUTH_USER_MODEL='dona.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'donadb',
+        'NAME': 'donadb5',
         'USER': 'root',
         'PASSWORD': '*****',
         'HOST': 'localhost',

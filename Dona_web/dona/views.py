@@ -15,9 +15,10 @@ from collections import OrderedDict
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 #from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.models import User
+from dona.models import User
 # Create your views here.
 
 #메인 페이지 - / - index.html
@@ -30,6 +31,21 @@ def monthly_ranking(request):
     return render(request, 'monthly_ranking.html')
 def login(request):   
     return render(request, 'login.html')
+    
+#회원가입
+def signup(request):
+    print(1)
+    if request.method == 'POST':
+        f = CustomUserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return render(request, 'index.html',{'messages' : '회원가입에 성공했습니다.'})
+    else:
+        f = CustomUserCreationForm()
+
+    return render(request, 'signup.html', {'form': f})
+    
+
 def help(request):   
     return render(request, 'help.html')
 def contact(request):   

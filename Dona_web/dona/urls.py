@@ -14,6 +14,7 @@ urlpatterns = [
     path('yearly_ranking/', views.yearly_ranking, name='yearly_ranking'), 
     path('help/', views.help, name='help'),
     path('login/', views.login, name='login'),
+    path('signup/', views.signup, name='signup'),
     path('contact/', views.contact, name='contact'),
     path('message/', views.message, name='message'),
     
