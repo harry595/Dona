@@ -24,14 +24,24 @@ from dona.models import User
 #메인 페이지 - / - index.html
 def index(request):  
     return render(request,'index.html')
+
+@login_required
 def message(request):   
     return render(request, 'message.html')
 
 def monthly_ranking(request):   
     return render(request, 'monthly_ranking.html')
-def login(request):   
-    return render(request, 'login.html')
     
+def mypage(request):   
+    return render(request, 'mypage.html')
+
+# 로그인
+class UserLoginView(LoginView):           
+    template_name = 'login.html'
+    def form_invalid(self, form):
+        messages.error(self.request, '로그인에 실패하였습니다.', extra_tags='danger')
+        return super().form_invalid(form)
+
 #회원가입
 def signup(request):
     print(1)

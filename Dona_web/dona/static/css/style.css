@@ -480,14 +480,13 @@ ul {
 /* line 25, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_button.scss */
 .btn_1, .btn_2 {
   display: inline-block;
-  padding: 7px 15px;
   border-radius: 0;
   font-size: 16px;
   color: #fff;
   text-transform: capitalize;
+  border: 0 1px 0 1px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  background-color: rgba(99, 241, 106, 0.884);
   font-weight: 500;
   border-radius:0.5em;
   -moz-border-radius: 0.5em;
@@ -503,7 +502,7 @@ ul {
 @media (max-width: 991px) {
   /* line 25, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_button.scss */
   .btn_1, .btn_2 {
-    padding: 14px 30px;
+    border: 0 1px 0 1px;
   }
 }
 
@@ -2512,9 +2511,23 @@ ul {
 /* line 55, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
 .banner_part .banner_text p {
   font-size: 24px;
+}
+.banner_part .banner_text .leftside_header_contents p {
+  font-size: 14px;
   color: black;
 }
-
+.banner_part .banner_text .rightside_send_box .rightside_send_top_box {
+  font-size: 14px;
+  color: #0ca5af;
+}
+.banner_part .banner_text .rightside_send_box .rightside_recv_top_box {
+  font-size: 14px;
+  color: #ffcc1c;
+}
+.banner_part .banner_text .rightside_bottom_box {
+  font-size: 14px;
+  color: black;
+}
 /* line 59, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
 .banner_part .banner_text h1 {
   font-size: 120px;
@@ -2531,6 +2544,22 @@ ul {
     font-size: 30px;
     margin-bottom: 15px;
     line-height: 1.3;
+  }
+  .banner_part .banner_text .leftside_header_contents p {
+    font-size: 12px;
+    color: black;
+  }
+  .banner_part .banner_text .rightside_header_contents p {
+    font-size: 12px;
+    color: black;
+  }
+  .banner_part .banner_text .leftside_header_content {
+    padding-top: 7%;
+    color: black;
+  }
+  .banner_part .banner_text .rightside_header_content {
+    padding-top: 7%;
+    color: black;
   }
 }
 
@@ -5625,3 +5654,77 @@ h6 {
 }
 
 /*# sourceMappingURL=../css/style.map */
+
+.leftside{
+  width: 33%; 
+  border-radius: 10px / 10px; 
+  height:80%; 
+  margin-top: 7%; 
+  border:1px solid; 
+  float: left;
+}
+.leftside_header{
+  border-bottom:1px solid;
+}
+.leftside_header_content{
+  text-align: left; padding: 3% 0 0 3%; font-size: 20px;
+}
+.leftside_header_contents{
+  padding: 12px 0 12px 0;border-bottom:1px solid;
+}
+.leftside_box{
+  text-align: left; padding: 0 0 0 2%;
+}
+
+.rightside{
+  width: 65%; border-radius: 10px / 10px; height:80%; margin-top: 7%; border:1px solid; float: right;
+}
+.rightside_header{
+  border-bottom:1px solid;
+}
+.rightside_header_content{
+  text-align: left; padding: 1.5% 0 0 3%; font-size: 20px;
+}
+.rightside_send_box{
+  padding: 12px 0 12px 0; border-bottom:1px solid;
+}
+.rightside_send_top_box{
+  text-align: left; padding: 0 0 0 2%;font-size:14px;color:#0ca5af;
+}
+.rightside_bottom_box{
+  text-align: left; padding: 0 0 0 2%;font-size:14px;
+}
+.rightside_recv_top_box{
+  text-align: left; padding: 0 0 0 2%;font-size:14px;color:#ffcc1c;
+}
+
+.bg-modal{
+  width: 100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.5); /* make it half transparent */
+  position: absolute;
+  top:0px;
+  z-index: 1;
+  display: none;  /* It will remain invisible until you open */
+  justify-content: center; /*center horizontally*/ 
+  align-items: center ; /* center vertically */
+}
+
+.modal-content{
+  display: flex;
+  border:0; 
+  justify-content: center;
+  position: relative ;
+  width:512px;
+  height:512px;
+  z-index: 1;
+  }
+
+.close{
+  position: absolute;
+  top:5px;
+  right: 14px;
+  font-size:25px;
+  transform: rotate(45deg); /* will make it look like x */
+  cursor: pointer;
+  }

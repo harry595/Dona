@@ -68,9 +68,6 @@
                     <li class="nav-item">
                       <a class="nav-link" href="/help">Dona</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/message">Message</a>
-                    </li>
                     <li class="nav-item dropdown">
                       <a
                         class="nav-link dropdown-toggle"
@@ -97,7 +94,18 @@
                     </li>
                   </ul>
                 </div>
-                <a href="/login" class="btn_1 d-none d-lg-block">Login</a>
+                    {% if user.is_authenticated %}<!--
+                    <p>{{request.user.Nickname}}님 안녕하세요!&nbsp;&nbsp;</p>-->
+                    
+                      <a class="btn_1 mr-3" href="/message"><img src="{% static 'img/message.png' %}" alt="logo" /></a>
+                    
+                      <a href="/mypage" class="btn_1 mr-3"><img src="{% static 'img/mypage.png' %}" alt="logo" /></a>
+                      <a href="/logout" class="btn_1 mr-3"><img src="{% static 'img/logout.png' %}" alt="logo" /></a>
+                    
+                    {% else %}  
+                      <a href="/login" class="btn_1 mr-3"><img src="{% static 'img/login.png' %}" alt="logo" /></a>
+                    
+                    {% endif %}
               </nav>
             </div>
           </div>
@@ -164,6 +172,8 @@
       <script src="{% static 'js/jquery-1.12.1.min.js' %}"></script>
       <!-- popper js -->
       <script src="{% static 'js/popper.min.js' %}"></script>
+      <!-- modal js -->
+      <script src="{% static 'js/modal.js' %}"></script>
       <!-- bootstrap js -->
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
       <!-- magnific js -->

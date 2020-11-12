@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="bg-modal">
+<div class="modal-content">
+<div class="close"> + </div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/searchhome.css' %}" />
+  </head>
+  <body>
+    <div class="s013">
+      <form>
+        <fieldset>
+          <legend>내 동네 찾기</legend>
+        </fieldset>
+        <div class="inner-form">
+          <div class="left">
+            <div class="input-wrap first">
+              <div class="input-field first">
+                <label>내 동네 이름(동,읍,면)으로 검색</label>
+                <input type="text" placeholder="ex: 산본동, 우만동" />
+              </div>
+            </div>
+          </div>
+          <button class="btn-search" type="button">SEARCH</button>
+        </div>
+      </form>
+    </div>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+</div>
+</div>

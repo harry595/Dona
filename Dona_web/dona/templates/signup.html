@@ -9,6 +9,9 @@
   #submit {
     margin-top: 5%;
   }
+  .banner_part{
+    height:100%;
+  }
 </style>
 <!-- login CSS -->
 <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
@@ -20,55 +23,18 @@
           <!-- Tabs Titles -->
           <h2 class="inactive underlineHover"><a href="/login">Log In</a></h2>
           <h2 class="active">Sign Up </h2>
-          <!-- Login Form -->
-          <!--
-          <form method="POST">
-            {% csrf_token %}
-            <input type="text" id="username" class="fadeIn second" name="username" placeholder="ID" maxlength="150" minlength="6">
-            <input type="text" id="password1" class="fadeIn second" name="password1" placeholder="password" maxlength="150" minlength="6">
-            <input type="text" id="password2" class="fadeIn third" name="password2" placeholder="confirm password" maxlength="150" minlength="6">
-            <input type="text" id="email" class="fadeIn third" name="email" placeholder="E-mail" maxlength="150" minlength="6">
-            <input type="text" id="Nickname" class="fadeIn fourth" name="Nickname" placeholder="Nickname" maxlength="10" minlength="1">
-            <input type="submit" id="submit" class="fadeIn fourth" value="Sign up">
-          </form>
-          -->
-<div class="jumbotron jumbotronfluid">
-  <div class="container my-5" >
-  <h3 class="my-3">Create account</h3><hr/>
-  <div class="login">
-      <form method="post" >
-          {% csrf_token %}
-          <div class="form-group row"><label for="id_username" class="col-sm-2 col-form-label">Username</label>
-              <div class="col-sm-10 mt-1"><input type="text" name="username" maxlength="150" minlength="4" required id="id_username"></div></div>
-          <div class="form-group row"><label for="id_email" class="col-sm-2 col-form-label">Email</label>
-              <div class="col-sm-10 mt-1"><input type="email" name="email" required id="id_email"></div></div>
-          <div class="form-group row"><label for="id_password1" class="col-sm-2 col-form-label">Password</label>
-              <div class="col-sm-10 mt-1"><input type="password" name="password1" required id="id_password1"></div></div>
-          <div class="form-group row"><label for="id_password2" class="col-sm-2 col-form-label">Confirm Password</label>
-              <div class="col-sm-10 mt-1"><input type="password" name="password2" required id="id_password2"></div></div><hr />
-              <div class="form-group row"><label for="id_Nickname" class="col-sm-2 col-form-label">Enter Nickname</label>
-                  <div class="col-sm-10 mt-1"><input type="text" class="fadeIn fourth" name="Nickname" required id="id_Nickname"></div></div><hr />
-          <input class="btn btn-info mt-3" type="submit" name="submit" value="Sign up" /></div>
-      </form>
-  </div>
-  </div>
-</div>
-          <div class="login">
-          <form method="post" >
-              {% csrf_token %}
-              <div class="form-group row"><label for="id_username" class="col-sm-2 col-form-label">Username</label>
-                  <div class="col-sm-10 mt-1"><input type="text" class="fadeIn second" name="username" maxlength="150" minlength="4" required id="id_username"></div></div>
-              <div class="form-group row"><label for="id_email" class="col-sm-2 col-form-label">Email</label>
-                  <div class="col-sm-10 mt-1"><input type="text" class="fadeIn third" name="email" required id="id_email"></div></div>
-              <div class="form-group row"><label for="id_password1" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10 mt-1"><input type="text" class="fadeIn third" name="password1" required id="id_password1"></div></div>
-              <div class="form-group row"><label for="id_password2" class="col-sm-2 col-form-label">Confirm Password</label>
-                  <div class="col-sm-10 mt-1"><input type="text" class="fadeIn fourth" name="password2" required id="id_password2"></div></div><hr />
-              <div class="form-group row"><label for="id_Nickname" class="col-sm-2 col-form-label">Enter Nickname</label>
-                  <div class="col-sm-10 mt-1"><input type="text" class="fadeIn fourth" name="Nickname" required id="id_Nickname"></div></div><hr />
-              <input class="btn btn-info mt-3" type="submit" class="fadeIn fourth" name="submit" value="Sign up" /></div>
-          </form>
-          </div>
+            <!-- Login Form -->
+            <div class="login">
+              <form method="post" >
+                {% csrf_token %}
+                <input type="text" name="username" class="fadeIn second" maxlength="150" minlength="4" required id="id_username" placeholder="ID" maxlength="150" minlength="6">
+                <input type="text" name="email" class="fadeIn second" required id="id_email" placeholder="E-mail" maxlength="150" minlength="6">
+                <input type="password" name="password1" class="fadeIn third" required id="id_password1"  placeholder="password" maxlength="150" minlength="6">
+                <input type="password" name="password2" class="fadeIn third" required id="id_password2" placeholder="confirm password" maxlength="150" minlength="6">
+                <input type="text" class="fadeIn fourth" name="Nickname" required id="id_Nickname" placeholder="Nickname" maxlength="10" minlength="1">
+                <input class="btn btn-info mt-3" class="fadeIn fourth" type="submit" name="submit" value="Sign up" />
+              </form>
+            </div>
         </div>
       </div>
     </div>
