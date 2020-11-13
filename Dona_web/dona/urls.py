@@ -5,6 +5,8 @@ from django.contrib.auth import views as auth_views
 from django.views.static import serve
 from django.urls import re_path
 from django.conf import settings
+from django.conf.urls import url
+
 app_name = 'dona'
 
 urlpatterns = [
@@ -19,6 +21,8 @@ urlpatterns = [
     path('message/', views.message, name='message'),
     path('mypage/', views.mypage, name='mypage'),
     path('logout/', auth_views.LogoutView.as_view(), name="logout"),
-    
+    url(r'^mypage/townsearch/$', views.townsearch, name="townsearch"),
+    url(r'^mypage/townenroll/$', views.townenroll, name="townenroll"),
+
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT})
 ]

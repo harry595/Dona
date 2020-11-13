@@ -19,7 +19,13 @@ from .forms import CustomUserCreationForm
 #from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
 from dona.models import User
-# Create your views here.
+from dona.models import region
+from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+import json
+from django.db import connection
+
 
 #메인 페이지 - / - index.html
 def index(request):  
@@ -34,6 +40,32 @@ def monthly_ranking(request):
     
 def mypage(request):   
     return render(request, 'mypage.html')
+
+@method_decorator(csrf_exempt, name='dispatch')
+def townsearch(request):
+    town_input = request.POST.get('town_input', None)
+    result = region.objects.filter(region_name__icontains=town_input).values('region_name')
+    results=[]
+    for i in result.values_list('region_name'):
+        results.append(i[0])
+    context = {'town_input': results}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+@method_decorator(csrf_exempt, name='dispatch')
+def townenroll(request):
+    town_input = request.POST.get('town_input', None)
+    btnToken= request.POST.get('btnToken')
+    if(btnToken=='1'):
+        user = request.user
+        user.region1=town_input
+        user.save()
+    elif(btnToken=='2'):
+        user = request.user
+        user.region2=town_input
+        user.save()
+    context={}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
 
 # 로그인
 class UserLoginView(LoginView):           

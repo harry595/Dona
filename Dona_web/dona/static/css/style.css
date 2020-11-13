@@ -5728,3 +5728,78 @@ h6 {
   transform: rotate(45deg); /* will make it look like x */
   cursor: pointer;
   }
+  
+
+.bg-modal2{
+  width: 100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.5); /* make it half transparent */
+  position: absolute;
+  top:0px;
+  z-index: 1;
+  display: none;  /* It will remain invisible until you open */
+  justify-content: center; /*center horizontally*/ 
+  align-items: center ; /* center vertically */
+}
+
+.modal-content2{
+  display: flex;
+  border:0; 
+  justify-content: center;
+  position: relative ;
+  width:400px;
+  height:400px;
+  z-index: 1;
+  }
+
+.close2{
+  position: absolute;
+  top:5px;
+  right: 14px;
+  font-size:25px;
+  transform: rotate(45deg); /* will make it look like x */
+  cursor: pointer;
+  }
+
+.town{
+  margin-top:5%;
+}
+
+
+#submodal button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:30px;
+  font-size:1.2em;
+  padding:0 2em;
+  margin-top:10px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+#submodal button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+#submodal button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+#submodal button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#submodal button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

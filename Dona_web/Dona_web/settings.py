@@ -29,7 +29,7 @@ SECRET_KEY = '5xkgo5_4#cej1h(kl8i29j!)k07339esqhg!t&*ta=qqm75nea'
 DEBUG = True
 #위에꺼 나중에 바꿔야함
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = '*'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'donadb5',
         'USER': 'root',
-        'PASSWORD': '*****',
+        'PASSWORD': 'hh237237!!',
         'HOST': 'localhost',
         'PORT': '33061',
     }

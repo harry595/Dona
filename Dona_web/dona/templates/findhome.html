@@ -22,14 +22,15 @@
             <div class="input-wrap first">
               <div class="input-field first">
                 <label>내 동네 이름(동,읍,면)으로 검색</label>
-                <input type="text" placeholder="ex: 산본동, 우만동" />
+                <input type="text" id="town_input" class="town_input" placeholder="ex: 산본동, 우만동" />
               </div>
             </div>
           </div>
-          <button class="btn-search" type="button">SEARCH</button>
+          <button class="btn-search" id="btn-search" type="button">SEARCH</button>
         </div>
       </form>
     </div>
+    {% include "./homedetail.html"  %}
   </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
 </div>

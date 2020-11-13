@@ -7,10 +7,6 @@
   }
 </style>
 
-
-
-
-
   <!-- banner part start-->
   <section class="banner_part" style="height: 100%; background-color: #F8F9FA;">
     <div class="container">
@@ -42,9 +38,10 @@
                 <p class="leftside_box">등록 지역1</p>
                 <p class="leftside_box">
                     {% if user.region1 %}
-                        {{user.region1}}
+                        {{user.region1}}</br>
+                        <input type="button" id="myBtn" value="지역 변경">
                     {% else %}
-                        <input type="button" id="myBtn" value="지역을 등록해주세요">
+                        <input type="button" id="myBtn" value="지역 등록">
                     {% endif %}
                 </p>
               </div>
@@ -52,12 +49,14 @@
                 <p class="leftside_box">등록 지역2</p>
                 <p class="leftside_box">
                     {% if user.region2 %}
-                        {{user.region2}}
+                        {{user.region2}}</br>
+                        <input type="button" id="myBtn2" value="지역 변경">
                     {% else %}
-                        <input type="button" id="myBtn2" value="지역을 등록해주세요">
+                        <input type="button" id="myBtn2" value="지역 등록">
                     {% endif %}
                 </p>
               </div>
+              <input type="hidden" id="btnToken" name="btnToken" value="1">
             </div>
 
             <div class="rightside">
