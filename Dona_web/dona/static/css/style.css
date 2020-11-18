@@ -5803,3 +5803,9 @@ h6 {
   width:100%;
   transition:800ms ease all;
 }
+.contain{
+  background-color: black;
+}
+#id_title{
+  width:100%;
+}

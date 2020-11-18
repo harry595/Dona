@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
     'dona',
 ]
 
@@ -140,11 +141,34 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
-
+SUMMERNOTE_CONFIG = {
+        # Toolbar customization
+		'fontNames': ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+		'fontSizes': ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]
+		],
+        # Or, explicitly set language/locale for editor
+        'lang': 'ko-KR'
+        
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

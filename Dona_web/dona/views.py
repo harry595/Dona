@@ -27,6 +27,7 @@ from django.utils.decorators import method_decorator
 import json
 from django.db import connection
 from django.views.generic import ListView
+from .forms import PostForm
 
 
 #메인 페이지 - / - index.html
@@ -78,7 +79,6 @@ class UserLoginView(LoginView):
 
 #회원가입
 def signup(request):
-    print(1)
     if request.method == 'POST':
         f = CustomUserCreationForm(request.POST)
         if f.is_valid():
@@ -116,6 +116,29 @@ def get_context_data(self, **kwargs):
     context['page_range'] = page_range
 
     return context
+
+def new_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            get_region = request.POST.get('region')
+            print(get_region)
+            mini_region = get_region.split(" ")[-1]
+            print(get_region)
+            print(mini_region)
+            new_board = help_board(
+                title = form.cleaned_data['title'],
+                content = form.cleaned_data['content'],
+                region = get_region,
+                region_last = mini_region,
+                writer = user
+            )
+            new_board.save()
+            return render(request, 'index.html',{'messages' : '글 올리기 성공'})
+    else:
+        form = PostForm()
+    return render(request, 'post.html', {'form': form})
 
 def help(request):   
     return render(request, 'help.html')

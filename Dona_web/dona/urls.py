@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from dona import views
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
@@ -23,6 +23,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name="logout"),
     url(r'^mypage/townsearch/$', views.townsearch, name="townsearch"),
     url(r'^mypage/townenroll/$', views.townenroll, name="townenroll"),
+    path('summernote/', include('django_summernote.urls')),
+    url(r'^posts/new/$', views.new_post, name='new_post'),
 
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT})
 ]
