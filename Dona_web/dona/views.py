@@ -20,11 +20,13 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.views import LoginView
 from dona.models import User
 from dona.models import region
+from dona.models import help_board
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 import json
 from django.db import connection
+from django.views.generic import ListView
 
 
 #메인 페이지 - / - index.html
@@ -87,6 +89,33 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': f})
     
+class HelpListView(ListView):
+    model = help_board
+    paginate_by = 10
+    template_name = 'help_board_list.html'  #DEFAULT : <app_label>/<model_name>_list.html
+    context_object_name = 'help_board_list'        #DEFAULT : <model_name>_list
+    def get_queryset(self):
+        help_board_list = help_board.objects.order_by('help_date') 
+        return help_board_list    
+
+def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    paginator = context['paginator']
+    page_numbers_range = 5
+    max_index = len(paginator.page_range)
+
+    page = self.request.GET.get('page')
+    current_page = int(page) if page else 1
+
+    start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+    end_index = start_index + page_numbers_range
+    if end_index >= max_index:
+        end_index = max_index
+
+    page_range = paginator.page_range[start_index:end_index]
+    context['page_range'] = page_range
+
+    return context
 
 def help(request):   
     return render(request, 'help.html')
