@@ -91,7 +91,7 @@ def signup(request):
     
 class HelpListView(ListView):
     model = help_board
-    paginate_by = 10
+    paginate_by = 15
     template_name = 'help_board_list.html'  #DEFAULT : <app_label>/<model_name>_list.html
     context_object_name = 'help_board_list'        #DEFAULT : <model_name>_list
     def get_queryset(self):
@@ -117,6 +117,7 @@ def get_context_data(self, **kwargs):
 
     return context
 
+@login_required
 def new_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -138,6 +139,13 @@ def new_post(request):
     else:
         form = PostForm()
     return render(request, 'post.html', {'form': form})
+
+def detail(request, id):
+    try:
+        board = help_board.objects.get(pk=id)
+    except Board.DoesNotExist:
+        raise Http404("Does not exist!")
+    return render(request, 'detail.html', {'board': board})
 
 def help(request):   
     return render(request, 'help.html')

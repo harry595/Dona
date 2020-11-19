@@ -9,6 +9,15 @@
         src: url("{% static 'fonts/BMJUA_ttf.ttf' %}");
     }
     h2{font-family: "Bamin";}
+    .banner_part td a{
+      color:black;
+    }
+    .banner_part td a:hover {
+    color: #ff7e5f;
+    text-decoration: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    }
   </style>
 <section class="banner_part" style="height: 2000px; background-color: #F8F9FA; ">
     <div class="container">
@@ -54,7 +63,7 @@
                     {% for help_board in help_board_list %}
                     <tr class="text-center">
                         <td>{{ help_board.id }}</td>
-                        <td>{{ help_board.title|truncatechars:30 }}</td>
+                        <td><a href="{{ help_board.id }}">{{ help_board.title|truncatechars:30 }}</a></td>
                         <td>{{ help_board.writer }}</td>
                         <td>{{ help_board.region_last }}</td>
                         <td>{{ help_board.help_date|date:'Y. m. d' }}</td>
@@ -86,7 +95,7 @@
                 </li>
                 {% endif %}
             
-                {% for page in page_range %}
+                {% for page in paginator.page_range %}
                 <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
                     <a class="page-link" href="?page={{ page }}">{{ page }}</a>
                 </li>

@@ -20,6 +20,7 @@ urlpatterns = [
     path('message/', views.message, name='message'),
     path('mypage/', views.mypage, name='mypage'),
     path('help/', views.HelpListView.as_view(), name='help_board_list'),
+    path('help/<int:id>', views.detail, name='detail'),
     path('logout/', auth_views.LogoutView.as_view(), name="logout"),
     url(r'^mypage/townsearch/$', views.townsearch, name="townsearch"),
     url(r'^mypage/townenroll/$', views.townenroll, name="townenroll"),
