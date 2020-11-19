@@ -1,4 +1,4 @@
-window.onload = function(){
+
   document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('myBtn').addEventListener('click', () => {
       document.querySelector('.bg-modal').style.display ='flex';
@@ -12,8 +12,6 @@ window.onload = function(){
       document.querySelector('.bg-modal').style.display ='none';
       });
   });
-};
-window.onload = function(){
   document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('btn-search').addEventListener('click', () => {
       $('#town').children('option:not(:first)').remove();
@@ -24,7 +22,6 @@ window.onload = function(){
       document.querySelector('.bg-modal2').style.display ='none';
       });
   });
-};
 $(".btn-search").click(function(){
   var town_input = document.getElementById('town_input').value;
   $.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.

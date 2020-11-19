@@ -27,7 +27,7 @@ class help_board(models.Model):
     help_coin=models.IntegerField(verbose_name='코인 개수',default=10)
     hits = models.PositiveIntegerField(verbose_name='조회수', default=0)
     registered_date = models.DateTimeField(auto_now_add=True, verbose_name='등록시간')
-    help_date = models.DateTimeField(verbose_name='도움 요청일',default=datetime.now, blank=True)
+    help_date = models.DateTimeField(verbose_name='Dona 요청일',default=datetime.now, blank=True)
     top_fixed = models.BooleanField(verbose_name='상단고정', default=False)
     finished = models.BooleanField(verbose_name='마감 여부', default=False)
     

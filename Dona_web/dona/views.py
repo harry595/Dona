@@ -123,13 +123,12 @@ def new_post(request):
         if form.is_valid():
             user = request.user
             get_region = request.POST.get('region')
-            print(get_region)
+            tume = request.POST.get('datetimepicker')
             mini_region = get_region.split(" ")[-1]
-            print(get_region)
-            print(mini_region)
             new_board = help_board(
                 title = form.cleaned_data['title'],
                 content = form.cleaned_data['content'],
+                help_date = tume,
                 region = get_region,
                 region_last = mini_region,
                 writer = user

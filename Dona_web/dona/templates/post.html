@@ -1,22 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+<!-- for datepicker -->
+
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
 <script src="{% static 'js/summernote-ko-KR.js' %}"></script>
 
+<!-- jQuery -->
+<script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}" />
 
-<section style="background-color: aliceblue; height: 1000px; vertical-align: middle; text-align: center; padding-top: 5%;">
+<section style="background-color: aliceblue; height: 1000px; vertical-align: middle; text-align: center; padding-top: 2%;">
   <form action="" method="POST">
     {% csrf_token %}
     <h2>Dona 요청하기</h2>
-    <table style="border:0; width:80%; margin:auto; text-align:center;">
+    <table style="border:0; width:60%; margin:auto; text-align:center; margin-top: 30px;">
         {{form.as_table}}
             <tr>
                 <th>
-                    <label for="id_region">
-                        도움 지역:
-                    </label>
                 </th>
                 <td>
                     <select name="region" required="" id="id_region">
@@ -34,19 +36,45 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+                <th>
+                </th>
+                <td>
+                    <input id="datetimepicker" type="text" name="datetimepicker" value="도움 요청일">
+                </td>
+            </tr>
         </table> 
-    
     <input type="submit" value="제출">
   </form>
+
 </section>
-<script>
+<script type="text/javascript">
+    jQuery.datetimepicker.setLocale('de');
+    jQuery('#datetimepicker').datetimepicker({
+     i18n:{
+      de:{
+       months:[
+        '1월','2월','3월','4월',
+        '5월','6월','7월','8월',
+        '9월','10월','11월','12월',
+       ],
+       dayOfWeek:[
+        "Su.", "Mo", "Tu", "We", 
+        "Th", "Fr", "Sa.",
+       ]
+      }
+     },
+     format:'Y-m-d H:i'
+    });
+
     $(document).ready(function () {
-        $('#id_content_frame').summernote({
+        $('.note-editor').summernote({
             placeholder: '내용을 입력해주세요.',
             lang: 'ko-KR',
            
             toolbar: [
             ['style', ['style']],
+            ['font-size', ['font-size']],
             ['font', ['bold', 'underline', 'clear']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
@@ -57,5 +85,10 @@
         });
         $('.note-resizebar').css('display','none');
     });
+    $(document).ready( function(){
+        $('#id_title').attr('placeholder','제목을 입력해주세요.');
+        $("th").empty();
+    });
+    
 </script>
 {% endblock %}

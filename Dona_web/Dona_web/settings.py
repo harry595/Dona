@@ -142,24 +142,34 @@ USE_L10N = True
 
 USE_TZ = False
 SUMMERNOTE_CONFIG = {
-        # Toolbar customization
-		'fontNames': ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-		'fontSizes': ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-        # https://summernote.org/deep-dive/#custom-toolbar-popover
-        'toolbar': [
-			    ['fontname', ['fontname']],
-			    ['fontsize', ['fontsize']],
-			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-			    ['color', ['forecolor','color']],
-			    ['table', ['table']],
-			    ['para', ['ul', 'ol', 'paragraph']],
-			    ['height', ['height']],
-			    ['insert',['picture','link','video']],
-			    ['view', ['fullscreen', 'help']]
-		],
-        # Or, explicitly set language/locale for editor
-        'lang': 'ko-KR'
+    'summernote': {
+
+        # Change editor size
+        'width': '100',
+        'height': '1480',
+
+        # Use proper language setting automatically (default)
+        'lang': 'ko-KR',
         
+        'toolbar': [
+            ['font', ['bold', 'underline', 'clear']],
+		    ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            ['view', ['fullscreen', 'help']],
+        ],
+
+        # Or, explicitly set language/locale for editor
+        'lang': 'ko-KR',
+    },
+
+    # Lazy initialization
+    # If you want to initialize summernote at the bottom of page, set this as True
+    # and call `initSummernote()` on your page.
+    'lazy': True,
+
 }
 
 # Static files (CSS, JavaScript, Images)
