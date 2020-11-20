@@ -57,7 +57,7 @@ class CustomUserCreationForm(forms.Form):
 class PostForm(forms.ModelForm):
     class Meta:
         model = help_board
-        fields = ['title', 'content','help_coin']
+        fields = ['title', 'content']
         widgets = {
             'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}),
         }

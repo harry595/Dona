@@ -39,17 +39,17 @@
           </div>
           <div class="banner_text text-center">
             <div class="helptable">
-            <table>
+            <table class="table table-hover">
                 <colgroup>
-                  <col width="6%"/>
-                  <col width="50%"/>
+                  <col width="10%"/>
+                  <col width="46%"/>
                   <col width="10%"/>
                   <col width="10%"/>
                   <col width="15%"/>
                   <col width="9%"/>
                 </colgroup>
                 <thead>
-                    <tr class="text-center">
+                    <tr class="text-center table-info">
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
@@ -78,10 +78,11 @@
                     </tr>
                     {% endif %}
                 </tbody>
-                
             </table>
+            <a class="page-link  justify-content-end" style="width:100px; float:right;margin-top: 2px;clear: both;" href="/posts/new/">글쓰기</a>
+            <br><br>
             </div>
-            <a class="page-link  justify-content-end" href="/posts/new/">글쓰기</a>
+            <div>
             {% if is_paginated %}
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
@@ -113,7 +114,7 @@
                 {% endif %}
             </ul>
             {% endif %}
-
+          </div>
         </div>
       </div>
     </div>

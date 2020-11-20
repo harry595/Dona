@@ -17,34 +17,43 @@
     <h2>Dona 요청하기</h2>
     <table style="border:0; width:60%; margin:auto; text-align:center; margin-top: 30px;">
         {{form.as_table}}
-            <tr>
-                <th>
-                </th>
-                <td>
-                    <select name="region" required="" id="id_region">
-                        <option disabled>----------------------------------</option>
-                        {% if user.region1 is None and user.region2 is None %}
-                        <option value="not-specified" disabled>마이 페이지에서 지역을 선택해주세요</option>
-                        {% else %}
-                            {% if user.region1 %}
-                                <option value="{{user.region1}}">{{user.region1}}</option>
-                            {% endif %}
-                            {% if user.region2 %}
-                                <option value="{{user.region2}}">{{user.region2}}</option>
-                            {% endif %}
+    </table> 
+    <table style="text-align: center; width: 60%; margin:auto; border:0;">
+        <colgroup>
+          <col width="7%"/>
+          <col width="10%"/>
+          <col width="7%"/>
+          <col width="10%"/>
+          <col width="56%"/>
+          <col width="10%"/>
+        </colgroup>
+        <tr>
+            <td>지역 :</td>
+            <td>
+                <select name="region" required="" id="id_region">
+                    <option disabled>----------------------------------</option>
+                    {% if user.region1 is None and user.region2 is None %}
+                    <option value="not-specified" disabled>마이 페이지에서 지역을 선택해주세요</option>
+                    {% else %}
+                        {% if user.region1 %}
+                            <option value="{{user.region1}}">{{user.region1}}</option>
                         {% endif %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>
-                </th>
-                <td>
-                    <input id="datetimepicker" type="text" name="datetimepicker" value="도움 요청일">
-                </td>
-            </tr>
-        </table> 
-    <input type="submit" value="제출">
+                        {% if user.region2 %}
+                            <option value="{{user.region2}}">{{user.region2}}</option>
+                        {% endif %}
+                    {% endif %}
+                </select>
+            </td>
+            <td>요청일 :</td>
+            <td>
+                <input id="datetimepicker" type="text" name="datetimepicker" value="도움 요청일">
+            </td>
+            <td></td>
+            <td>
+                <input type="submit" class="btn btn-success" style="float:right;"value="제출">
+            </td>
+        </tr>
+    </table>
   </form>
 
 </section>
