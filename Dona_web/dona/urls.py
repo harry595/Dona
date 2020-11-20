@@ -27,5 +27,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     url(r'^posts/new/$', views.new_post, name='new_post'),
 
+
+
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT})
 ]

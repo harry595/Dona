@@ -91,7 +91,7 @@ def signup(request):
     
 class HelpListView(ListView):
     model = help_board
-    paginate_by = 15
+    paginate_by = 12
     template_name = 'help_board_list.html'  #DEFAULT : <app_label>/<model_name>_list.html
     context_object_name = 'help_board_list'        #DEFAULT : <model_name>_list
     def get_queryset(self):
@@ -116,6 +116,9 @@ def get_context_data(self, **kwargs):
     context['page_range'] = page_range
 
     return context
+
+
+
 
 @login_required
 def new_post(request):

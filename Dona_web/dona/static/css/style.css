@@ -2367,7 +2367,8 @@ ul {
   height: 880px;
   position: relative;
   overflow: hidden;
-  /*background-image: url(../img/banner_bg.png);*/
+  /*background-image: url(../img/banner_bg.png); 50% 0 no-repeat fixed*/
+  /*background-image: url("/static/img/test2.jpg");*/
   background-color: #FBF7F2;
   background-repeat: no-repeat;
   background-size: cover;

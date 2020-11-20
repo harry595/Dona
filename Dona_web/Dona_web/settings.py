@@ -83,7 +83,7 @@ AUTH_USER_MODEL='dona.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'donadb5',
+        'NAME': 'donadb6',
         'USER': 'root',
         'PASSWORD': 'hh237237!!',
         'HOST': 'localhost',
