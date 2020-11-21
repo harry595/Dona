@@ -12,19 +12,22 @@
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-10">
           <div class="banner_text text-center">
-
             <div class="leftside">
               <div class="leftside_header">
-                <div class="leftside_header_content">쪽지함</div>
+                <div class="leftside_header_content">Dona도움 | Dona나눔</div>
               </div>
-              <div  class="leftside_header_contents">
-                <p class="leftside_box">사람 1</p>
-                <p class="leftside_box">마지막 메세지 남기는 곳</p>
-              </div>
+              {% for msg in msg_container %}
               <div class="leftside_header_contents">
-                <p class="leftside_box">사람 2</p>
-                <p class="leftside_box">아 정말 정말 너무 하기 싫다... 잠오고 졸린데 공모전 과제 코테 인턴준비 다학제캡디 회사일 정말 ㄷ때려치고싶다.ㅠㅠㅠ..ㅠㅠ.ㅠㅠ.</p>
+                <a href="?msg={{msg.id}}">
+                  <p class="leftside_box" style="color: blueviolet;">{{msg.userone.Nickname}}</p>
+                  <p class="leftside_box">{{msg.title}}</p>
+                </a>
               </div>
+              {% empty %}
+              <div  class="leftside_header_contents">
+                <p class="leftside_box">쪽지가 비었습니다.</p>
+              </div>
+              {% endfor %}
             </div>
 
             <div class="rightside">

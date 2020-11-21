@@ -18,6 +18,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('contact/', views.contact, name='contact'),
     path('message/', views.message, name='message'),
+    path('message_make/<int:id>', views.message_make, name='message_make'),
     path('mypage/', views.mypage, name='mypage'),
     path('help/', views.HelpListView.as_view(), name='help_board_list'),
     path('help/<int:id>', views.detail, name='detail'),
@@ -26,7 +27,7 @@ urlpatterns = [
     url(r'^mypage/townenroll/$', views.townenroll, name="townenroll"),
     path('summernote/', include('django_summernote.urls')),
     url(r'^posts/new/$', views.new_post, name='new_post'),
-
+    path('help/<int:help_board_id>/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
 
 
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT})

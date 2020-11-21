@@ -33,3 +33,35 @@ class help_board(models.Model):
     
     def __str__(self):
         return self.title
+
+class messages_Container(models.Model):
+    objects = models.Manager()
+    title=models.CharField(max_length=50)
+    userone = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user1', null=True, on_delete=models.CASCADE, verbose_name='도움 받을 사람')
+    usertwo = models.ForeignKey(settings.AUTH_USER_MODEL,  related_name='user2', null=True, on_delete=models.CASCADE, verbose_name='도와줄 사람')
+    unread_count = models.IntegerField(verbose_name='미확인 쪽지 수', default=0)
+    def __str__(self):
+        return self.title
+
+class messages(models.Model):
+    objects = models.Manager()
+    message = models.ForeignKey(messages_Container, on_delete=models.CASCADE)
+    content = models.TextField(verbose_name='내용',max_length=200)
+    registered_date = models.DateTimeField(auto_now_add=True, verbose_name='등록시간')
+    user_send = models.BooleanField(verbose_name='보낸이', default=True)
+    didread = models.BooleanField(verbose_name='확인 여부', default=True)
+    def __str__(self):
+        return self.content
+
+class Comment(models.Model):
+    post=models.ForeignKey(help_board, related_name='comments', on_delete=models.CASCADE)
+    author= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    comment_text=models.TextField()
+    created_at=models.DateTimeField(default=timezone.now) 
+
+    def approve(self):
+        self.save()
+
+    def __str__(self):
+        return self.comment_text
+    

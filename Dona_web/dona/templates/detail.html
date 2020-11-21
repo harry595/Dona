@@ -1,7 +1,15 @@
 {% extends "base.html" %} 
 {% block content %}
 {% load static %}
-
+<style>
+  #id_comment_text{
+    width:90%; height: 30px;
+  }
+  .save{
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+</style>
 <section class="banner_part" style="height: 2000px; background-color: #F8F9FA; ">
     <div class="container">
       <div class="row align-items-center justify-content-center">
@@ -9,12 +17,31 @@
           <div class="banner_text_iner">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ board.title }} - {{ board.writer }}</h5>
+                    <h5 class="card-title">{{ board.title }} - {{ board.writer.Nickname }}</h5>
                     <p class="card-text">{{ board.region }}</p>
+                    <form method="POST" action="{% url 'message_make' board.id %}" class="post-form">{% csrf_token %}
+                        <button type="submit" class="save btn btn-success" >쪽지 보내기</button>
+                    </form>
                     <p class="card-text"><small class="text-muted">{{ board.help_date|date:'Y. m. d H:i' }}</small></p>
                     <p>{{ board.content | safe }}</p>
-                
                 </div>
+                <div class="card-body" id="comment" style="overflow:auto; width:100%; height:300px; padding:10px; background-color:gold;">
+                  <h2>댓글</h2> <br>
+                  {% for comment in board.comments.all %}
+                  <div class="comment">
+                    <strong>{{ comment.author.Nickname }}</strong>
+                      <div class="date">{{ comment.created_at }}</div>
+                      <p>{{ comment.comment_text|linebreaks }}</p>
+                  </div>
+                  {% empty %}
+                  <p>No comments here yet :(</p>
+                  {% endfor %}
+                </div>    
+
+                <form method="POST" action="{% url 'add_comment_to_post' board.id %}" class="post-form">{% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="save btn btn-success" >등록</button>
+                </form>
             </div>
         </div>
       </div>

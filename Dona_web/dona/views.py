@@ -18,9 +18,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
 #from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
-from dona.models import User
-from dona.models import region
-from dona.models import help_board
+from dona.models import User, region, help_board, messages, messages_Container
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -28,21 +26,50 @@ import json
 from django.db import connection
 from django.views.generic import ListView
 from .forms import PostForm
-
+from .forms import CommentForm
+from django.db.models import Q
 
 #메인 페이지 - / - index.html
 def index(request):  
     return render(request,'index.html')
 
 @login_required
-def message(request):   
-    return render(request, 'message.html')
+def message_make(request,id):  
+    if request.method == 'POST': 
+        user = request.user
+        board = help_board.objects.get(pk=id)
+        samedata=messages_Container.objects.filter(userone=board.writer,usertwo=user,title=board.title)
+        if(samedata):
+            return redirect('detail',id)
+        if(board.writer==user):
+            return redirect('detail',id)
+
+        new_message = messages_Container(
+            userone=board.writer,
+            usertwo=user,
+            title=board.title
+        )
+        new_message.save()
+        return redirect('message')
+    else:
+        return redirect('index')
+
+@login_required
+def message(request):  
+    msg = request.GET.get('msg', None)
+    user=request.user
+    check_val=messages_Container.objects.filter(Q(id=msg)&(Q(userone=user)|Q(usertwo=user)))
+    if not check_val:
+        return redirect('message')
+    msg_content=messages.objects.filter(Q(message_id=msg))
+    return render(request, 'message.html',{'msg_container': msg_container,'msg_content':msg_content})
 
 def monthly_ranking(request):   
     return render(request, 'monthly_ranking.html')
     
 def mypage(request):   
     return render(request, 'mypage.html')
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 def townsearch(request):
@@ -71,7 +98,7 @@ def townenroll(request):
 
 
 # 로그인
-class UserLoginView(LoginView):           
+class UserLoginView(LoginView):
     template_name = 'login.html'
     def form_invalid(self, form):
         messages.error(self.request, '로그인에 실패하였습니다.', extra_tags='danger')
@@ -141,14 +168,15 @@ def new_post(request):
             return render(request, 'index.html',{'messages' : '글 올리기 성공'})
     else:
         form = PostForm()
-    return render(request, 'post.html', {'form': form})
+    return render(request, 'post.html', {'form': form })
 
 def detail(request, id):
     try:
         board = help_board.objects.get(pk=id)
-    except Board.DoesNotExist:
+        form = CommentForm()
+    except board.DoesNotExist:
         raise Http404("Does not exist!")
-    return render(request, 'detail.html', {'board': board})
+    return render(request, 'detail.html', {'board': board,'form':form})
 
 def help(request):   
     return render(request, 'help.html')
@@ -156,3 +184,14 @@ def contact(request):
     return render(request, 'contact.html')
 def yearly_ranking(request):   
     return render(request, 'yearly_ranking.html')
+
+def add_comment_to_post(request, help_board_id):
+    board=get_object_or_404(help_board, pk=help_board_id)
+    if request.method == "POST":
+        form=CommentForm(request.POST)
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.post=board
+            comment.author_id= request.user.id
+            comment.save()
+            return redirect('detail',help_board_id)

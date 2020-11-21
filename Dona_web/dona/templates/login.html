@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+<style>
+  /* mouse over link */
+  a:hover {
+    color: #eed202;
+  }
+  .fadeIn.second{
+    margin-top:20px;
+  }
+  .banner_part{
+    height:100%;
+  }
+</style>
+<!-- login CSS -->
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  <!-- banner part start-->
+  <section class="banner_part" style="background-color: #56baed;">
+    
+    <div class="container">
+      {% if form.errors %}
+      <p style="color:yellow;">아이디, 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
+      {% endif %}
+
+      
+        <div class="wrapper fadeInDown">
+          <div id="formContent">
+            {% if user.is_authenticated %}
+            <img src="{% static 'img/wrong_access.png' %}" alt="logo" />
+            {% else %}
+            <!-- Tabs Titles -->
+            <h2 class="active"> Log In </h2>
+            <h2 class="inactive underlineHover"><a href="/signup">Sign Up</a></h2>
+          
+            <!-- Login Form -->
+            <form method="post" action="{% url 'login' %}">
+              {% csrf_token %}
+              <div class="fadeIn second">{{ form.username }}</div>
+              <div class="fadeIn third">{{ form.password }}</div>
+              <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+          
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+              <a class="underlineHover" href="/signup">Not a member? Sign up NOW!</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+    
+    </div>
+    </div>
+  </section>
+  {% endblock %}

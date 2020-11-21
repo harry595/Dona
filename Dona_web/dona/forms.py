@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from .models import help_board
 from django_summernote.widgets import SummernoteWidget
+from .models import Comment, messages
 
 class CustomUserCreationForm(forms.Form):
     username = forms.CharField(
@@ -61,3 +62,14 @@ class PostForm(forms.ModelForm):
         widgets = {
             'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}),
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        fields=('comment_text',)
+
+class messagesForm(forms.ModelForm):
+    class Meta:
+        model=messages
+        fields=('content',)
+        
