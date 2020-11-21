@@ -7,21 +7,28 @@
   }
 </style>
   <!-- banner part start-->
-  <section class="banner_part" style="height: 100%; background-color: #F8F9FA;">
+  <section class="banner_part" style="height: 1000px; background-color: #F8F9FA;">
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-10">
           <div class="banner_text text-center">
-            <div class="leftside">
+            <div class="leftside" style="overflow:auto;">
               <div class="leftside_header">
                 <div class="leftside_header_content">Dona도움 | Dona나눔</div>
               </div>
               {% for msg in msg_container %}
               <div class="leftside_header_contents">
+                {% if msg.userone_id == user.id %}
+                <a href="?msg={{msg.id}}">
+                  <p class="leftside_box" style="color: red;">{{msg.usertwo.Nickname}}</p>
+                  <p class="leftside_box">{{msg.title}}</p>
+                </a>
+                {% else %}
                 <a href="?msg={{msg.id}}">
                   <p class="leftside_box" style="color: blueviolet;">{{msg.userone.Nickname}}</p>
                   <p class="leftside_box">{{msg.title}}</p>
                 </a>
+                {% endif %}
               </div>
               {% empty %}
               <div  class="leftside_header_contents">
@@ -30,27 +37,40 @@
               {% endfor %}
             </div>
 
-            <div class="rightside">
+            <div class="rightside" style="overflow:auto;">
               <div class="rightside_header">
                 <div class="rightside_header_content">이름</div>
-              </div>
+              </div>              
+              {% for msg in msg_content %}
               <div class="rightside_send_box">
-                <p class="rightside_send_top_box">보낸 쪽지</p>
-                <p class="rightside_bottom_box">안녕하세용 qwewqepwqepinti nwqpe inwpqienqent piwnetpiwn qpqwefoiwqenfoiwqb eoiwenf oiwqen foiwebn ioqwef qwenfoi wnbefnweoi nwe fit</p>
+                  {% if msg.user_send == 1 %}
+                  <p class="rightside_send_top_box">{{msg.message.userone.Nickname}}</p>
+                  {% else %}
+                  <p class="rightside_recv_top_box">{{msg.message.usertwo.Nickname}}</p>
+                  {% endif %}
+                  <p class="rightside_bottom_box">{{msg.content}}</p>
               </div>
-              <div class="rightside_send_box">
-                <p class="rightside_recv_top_box">받은 쪽지</p>
-                <p class="rightside_bottom_box">예 안녕하세용용 qwewqepwqepinti nwqpe inwpqienqent piwnetpiwn qpqwefoiwqenfoiwqb eoiwenf oiwqen foiwebn ioqwef qwenfoi wnbefnweoi nwe f</p>
+              {% empty %}
+              <div  class="rightside_send_box">
+                <p class="rightside_bottom_box">쪽지가 비었습니다.</p>
               </div>
-              <div class="rightside_send_box">
-                <p class="rightside_recv_top_box">받은 쪽지</p>
-                <p class="rightside_bottom_box">예 안녕하세용용 qwewqepwqepinti nwqpe inwpqienqent piwnetpiwn qpqwefoiwqenfoiwqb eoiwenf oiwqen foiwebn ioqwef qwenfoi wnbefnweoi nwe f</p>
-              </div>
+              {% endfor %}
+
+              {% if msg_id is not None %}
+              <form method="POST" action="{% url 'add_content_to_msg' msg_id %}" class="post-form">{% csrf_token %}
+                {{ form }}
+                <button type="submit" class="save btn btn-success" >등록</button>
+              </form>
+              {% endif %}
             </div>
           </div>
           </div>
         </div>
       </div>
     </div>
+    <input type='hidden' id='current_msg' value='1' />
   </section>
+  <script>
+
+  </script>
   {% endblock %}

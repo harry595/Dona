@@ -26,7 +26,7 @@ import json
 from django.db import connection
 from django.views.generic import ListView
 from .forms import PostForm
-from .forms import CommentForm
+from .forms import CommentForm, messagesForm
 from django.db.models import Q
 
 #메인 페이지 - / - index.html
@@ -55,14 +55,17 @@ def message_make(request,id):
         return redirect('index')
 
 @login_required
-def message(request):  
+def message(request):
+    form = messagesForm()
     msg = request.GET.get('msg', None)
     user=request.user
-    check_val=messages_Container.objects.filter(Q(id=msg)&(Q(userone=user)|Q(usertwo=user)))
-    if not check_val:
-        return redirect('message')
+    if(msg is not None):
+        check_val=messages_Container.objects.filter(Q(id=msg)&(Q(userone=user)|Q(usertwo=user)))
+        if not check_val:
+            return redirect('message')
+    msg_container=messages_Container.objects.filter(Q(userone=user)|Q(usertwo=user))
     msg_content=messages.objects.filter(Q(message_id=msg))
-    return render(request, 'message.html',{'msg_container': msg_container,'msg_content':msg_content})
+    return render(request, 'message.html',{'msg_container': msg_container,'msg_content': msg_content,'form':form,'msg_id':msg})
 
 def monthly_ranking(request):   
     return render(request, 'monthly_ranking.html')
@@ -185,6 +188,26 @@ def contact(request):
 def yearly_ranking(request):   
     return render(request, 'yearly_ranking.html')
 
+def add_content_to_msg(request, msg_id):
+    user=request.user
+    comments = request.POST.get('content', None)
+    print(comments)
+    if messages_Container.objects.filter(id=msg_id,userone=user):
+        flag=1
+    else:
+        flag=0
+    if request.method == "POST":
+        form=messagesForm(request.POST)
+        if form.is_valid():
+            print(comments)
+            messages=form.save(commit=False)
+            messages.message_id=msg_id
+            messages.content=comments
+            messages.user_send=flag
+            messages.save()
+            return redirect('message')
+    return redirect('message')
+            
 def add_comment_to_post(request, help_board_id):
     board=get_object_or_404(help_board, pk=help_board_id)
     if request.method == "POST":
