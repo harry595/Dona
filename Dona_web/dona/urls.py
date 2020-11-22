@@ -19,6 +19,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('message/', views.message, name='message'),
     path('message_make/<int:id>', views.message_make, name='message_make'),
+    path('message_delete/<int:msg_id>', views.message_delete, name='message_delete'),
     path('message_send/<int:msg_id>/', views.add_content_to_msg, name='add_content_to_msg'),
     path('mypage/', views.mypage, name='mypage'),
     path('help/', views.HelpListView.as_view(), name='help_board_list'),

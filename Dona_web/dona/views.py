@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
@@ -61,6 +61,7 @@ def message(request):
     user=request.user
     if(msg is not None):
         check_val=messages_Container.objects.filter(Q(id=msg)&(Q(userone=user)|Q(usertwo=user)))
+        msg=int(msg)
         if not check_val:
             return redirect('message')
     msg_container=messages_Container.objects.filter(Q(userone=user)|Q(usertwo=user))
@@ -199,13 +200,12 @@ def add_content_to_msg(request, msg_id):
     if request.method == "POST":
         form=messagesForm(request.POST)
         if form.is_valid():
-            print(comments)
             messages=form.save(commit=False)
             messages.message_id=msg_id
             messages.content=comments
             messages.user_send=flag
             messages.save()
-            return redirect('message')
+            return HttpResponseRedirect('/%s?msg=%s' % ('message', msg_id))
     return redirect('message')
             
 def add_comment_to_post(request, help_board_id):
@@ -218,3 +218,16 @@ def add_comment_to_post(request, help_board_id):
             comment.author_id= request.user.id
             comment.save()
             return redirect('detail',help_board_id)
+
+@login_required
+def message_delete(request,msg_id):
+    user=request.user
+    check_val=messages_Container.objects.filter(Q(id=msg_id)&(Q(userone=user)|Q(usertwo=user)))
+    if(check_val):
+        messages.objects.filter(message_id=msg_id).delete()
+        messages_Container.objects.filter(id=msg_id).delete()
+        return redirect('message')
+    else:
+        return redirect('message')
+
+

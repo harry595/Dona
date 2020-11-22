@@ -52,7 +52,7 @@
 }
 .btn_4{
 	display: inline-block;
-	padding: 13px 47px;
+	padding: 1px 7px 5px 7px;
     box-shadow: 0px 12px 20px 0px rgba(255, 126, 95, 0.15);
 	font-size: 14px;
 	color: $white_color;
@@ -65,18 +65,6 @@
 		color: $white_color;
 		background-size: 100% 100%;
 
-	}
-	@media #{$small_mobile}{
-		padding: 14px 30px;
-	}
-	@media #{$large_mobile}{
-		padding: 14px 30px;
-	}
-	@media #{$tab_device}{
-		padding: 14px 30px;
-	}
-	@media #{$medium_device}{
-	
 	}
 }
 .btn_3 {

@@ -7,7 +7,7 @@ from datetime import datetime
 from django.conf import settings
 
 class User(AbstractUser):
-    Nickname=models.CharField(max_length=10)
+    Nickname=models.CharField(max_length=6)
     coin=models.IntegerField(default=10)
     region1=models.CharField(max_length=50,null=True)
     region2=models.CharField(max_length=50,null=True)
@@ -46,7 +46,7 @@ class messages_Container(models.Model):
 class messages(models.Model):
     objects = models.Manager()
     message = models.ForeignKey(messages_Container, on_delete=models.CASCADE)
-    content = models.TextField(verbose_name='내용',max_length=200)
+    content = models.TextField(verbose_name='쪽지',max_length=200)
     registered_date = models.DateTimeField(auto_now_add=True, verbose_name='등록시간')
     user_send = models.BooleanField(verbose_name='보낸이', default=True)
     didread = models.BooleanField(verbose_name='확인 여부', default=True)
