@@ -23,9 +23,9 @@
 </style>
 
 <!-- banner part start-->
-<section class="banner_part" style="background-color: #F8F9FA;">
-    <div class="container">
-        <div class="row align-items-center justify-content-center" style="text-align: center;">
+<section class="banner_part" style="background-color: #F8F9FA; height:1000px;">
+    <div class="container"style="height: 2000px;">
+        <div class="row align-items-center justify-content-center" style="text-align: center; ">
             <h1 style="font-size: 45px;margin-bottom: 5px;">MYPAGE</h1>
             <div class="banner_text text-center;">
                 <span>
@@ -41,7 +41,7 @@
                     <tbody>
                         <tr style="background-color: rgb(253, 253, 228);">
                             <th>Dona 유저 랭킹</th>
-                            <th>{{user.help}} 등</th>
+                            <th>{{person_rank}} 등</th>
                         </tr>
                     </tbody>
                 </table>
@@ -61,6 +61,12 @@
                             <td>{{user.helped}} 번</td>
                         </tr>
                         <tr>
+                            <th>E-mail 주소</th>
+                            <td>{{user.email}}</td>
+                            <th>닉네임</th>
+                            <td>{{user.Nickname}}</td>
+                        </tr>
+                        <tr style="background-color: rgb(255, 232, 232);">
                             <th>등록 지역1</th>
                             {% if user.region1 %}
                             <td>{{user.region1}} </td>
@@ -74,9 +80,9 @@
                                     <input type="button" class="btn-primary" id="myBtn" value="지역 등록 "> 
                                 {% endif %}
                             </td>
-                            <td></td>
+                            <td style="border:1px 0px 0px 1px;">무분별한 도움 요청은 제재 대상입니다.<br>개인정보 요구에 응하지 마세요.</td>
                         </tr>
-                        <tr style="background-color: rgb(255, 232, 232);">
+                        <tr>
                             <th>등록 지역2</th>
                             {% if user.region2 %}
                             <td>{{user.region2}}</td>
@@ -90,13 +96,7 @@
                                     <input type="button" class="btn-primary" id="myBtn2" value="지역 등록 "> 
                                 {% endif %}
                             </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>E-mail 주소</th>
-                            <td>{{user.email}}</td>
-                            <th>닉네임</th>
-                            <td>{{user.Nickname}}</td>
+                            <td ><img src="{% static 'img/logo.png' %}" alt="" /></td>
                         </tr>
                     </tbody>
                 </table>

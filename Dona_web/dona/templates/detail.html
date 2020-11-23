@@ -17,38 +17,45 @@
             <div class="col-lg-10">
                 <div class="banner_text_iner">
                     <div class="card" style="margin-top: 20px;">
-                        <div class="card-body">
-                            <h5 class="card-title" style="display: inline-block;">제목 : {{ board.title }}</h5>
+                        <div class="card-body" style="overflow:auto; max-height:1000px;min-height:300px;">
+                            <h2 class="card-title" style="display: inline-block;">{{ board.title }}</h2>
+                            <br>
                             <form method="POST" action="{% url 'message_make' board.id %}" class="post-form" style="margin-top:20px;float:right">{% csrf_token %}
                                 <button type="submit" class="save btn btn-info">쪽지 보내기</button>
                             </form>
                             <br>
-                            <span>작성자 :  {{ board.writer.Nickname }}</span>
+                            {{board.update_counter}}
+                            <span>작성자 :  {{ board.writer.Nickname }}</span><br>
+                            <span>도움 요청일: {{ board.help_date|date:'Y. m. d H:i' }}</span>
                             <hr>
                             {{ board.content | safe }}
-
-                            <small class="text-muted" style="float: right;">{{ board.help_date|date:'Y. m. d H:i' }}</small><br>
-                            <span class="card-text" style="float: right;">{{ board.region }}</span>
+                            <small class="text-muted" style="position: absolute; bottom: 30px; right: 20px;">{{ board.registered_date|date:'Y. m. d H:i' }}</small><br>
+                            <span class="card-text" style="position: absolute; bottom: 10px; right: 20px;">{{ board.region }}</span>
                         </div>
-                        <hr>
-                        <div class="card-body" id="comment" style="overflow:auto; width:100%; height:300px; padding:10px; padding-top:0px">
-                            <h4>&lt; 댓글 &gt;</h4> <br> {% for comment in board.comments.all %}
-                            <div class="comment">
-                                <strong>{{ comment.author.Nickname }}</strong>
-                                <div class="date">{{ comment.created_at }}</div>
-                                <p>{{ comment.comment_text|linebreaks }}</p>
+                    </div>
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-body" id="comment" style="overflow:auto; width:100%; min-height:300px; max-height:600px; padding:10px; padding-top:0px">
+                            <br><h4>댓글 ({{board.comments.count}})</h4> <br> 
+                            {% for comment in board.comments.all %}
+                            
+                            <div class="card" style="margin-top: 20px;">
+                                <div class="card-body">
+                                    <strong>{{ comment.author.Nickname }} <div class="date" style="float:right;font-weight: normal;">{{ comment.created_at }}</div></strong>
+                                    
+                                    <p>{{ comment.comment_text|linebreaks }}</p>
+                                </div>
                             </div>
                             {% empty %}
                             <p>No comments here yet :(</p>
                             {% endfor %}
+                            <div class="card" style="margin-top: 20px;">
+                                <div class="card-body">
+                                    <form method="POST" action="{% url 'add_comment_to_post' board.id %}" class="post-form">{% csrf_token %} {{ form }}
+                                        <button type="submit" class="save btn btn-success">등록</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <form method="POST" action="{% url 'add_comment_to_post' board.id %}" class="post-form">{% csrf_token %} {{ form }}
-                                <button type="submit" class="save btn btn-success">등록</button>
-                            </form>
                         </div>
                     </div>
                 </div>

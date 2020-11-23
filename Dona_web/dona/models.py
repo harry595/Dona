@@ -34,6 +34,10 @@ class help_board(models.Model):
     
     def __str__(self):
         return self.title
+    @property
+    def update_counter(self):
+        self.hits=self.hits+1
+        self.save()
 
 class messages_Container(models.Model):
     objects = models.Manager()

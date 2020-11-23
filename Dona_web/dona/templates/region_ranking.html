@@ -4,7 +4,16 @@
 <style>
   .banner_part table th{
     height: 50px;
+    font-size: 25px;
     background-color: antiquewhite;
+  }
+  @FONT-FACE {
+      font-family: "Bamin";
+      src: url("{% static 'fonts/BMJUA_ttf.ttf' %}");
+  }
+  td,th,h2{
+    font-family: "Bamin"; 
+    font-weight: normal;
   }
 </style>
   <!-- banner part start-->
@@ -17,7 +26,7 @@
               <h2>지역 Dona Ranking <img src="{% static 'img/yearly_ranking.png' %}" style="max-width: 100px; height:auto;" alt="logo" /></h2>
             </div>
             <div>
-            <table border="1" class="table table-hover">
+            <table class="table table-hover">
               <colgroup>
                 <col width="20%"/>
                 <col width="40%"/>
@@ -25,24 +34,20 @@
                 <col width="20%"/>
               </colgroup>
               <thead>
-              <th>월간 Ranking</th>
-              <th>닉네임</th>
+              <th>Ranking</th>
               <th>지역</th>
               <th>Dona 횟수</th>
-            </thead>
+              <th>Dona 횟수</th>
+              </thead>
             <tbody>
-              <tr><!-- 첫번째 줄 시작 -->
-                  <td>첫번째 칸</td>
-                  <td>두번째 칸</td>
-                  <td>두번째 칸</td>
-                  <td>두번째 칸</td>
-              </tr><!-- 첫번째 줄 끝 -->
-              <tr><!-- 두번째 줄 시작 -->
-                  <td>첫번째 칸</td>
-                  <td>두번째 칸</td>
-                  <td>두번째 칸</td>
-                  <td>두번째 칸</td>
-              </tr><!-- 두번째 줄 끝 -->
+              {% for rank in region_rank %}
+              <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{rank.region_name}}</td>
+                  <td>{{rank.region_help}}</td>
+                  <td>{{rank.region_help}}</td>
+              </tr>
+              {% endfor %}
             </tbody>
             </table>
           </div>

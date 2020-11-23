@@ -23,7 +23,7 @@
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-10">
-          <div class="banner_text_iner" style="margin-top:30px; color: #a2a2a2;">
+          <div class="banner_text_iner" style="margin-top:5px; margin-bottom: 10px; color: #a2a2a2;">
             <p>  
                 {% if user.region1 is None and user.region2 is None %}
                 지역을 등록해주세요
@@ -35,26 +35,24 @@
                 {{user.region1}},{{user.region2}}
                 {% endif %}
             </p>
-            <h2>  도움 나눔 게시판  </h2>
+            <h2  style="margin-bottom: 20px;  ">  도움 나눔 게시판  </h2>
           </div>
           <div class="banner_text text-center">
             <div class="helptable">
             <table class="table table-hover">
                 <colgroup>
-                  <col width="10%"/>
-                  <col width="42%"/>
+                  <col width="14%"/>
+                  <col width="48%"/>
                   <col width="14%"/>
                   <col width="10%"/>
-                  <col width="15%"/>
-                  <col width="9%"/>
+                  <col width="14%"/>
                 </colgroup>
                 <thead>
                     <tr class="text-center table-info">
-                        <th>번호</th>
+                        <th>도움 요청일</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>지역</th>
-                        <th>Dona 당일</th>
                         <th>조회수</th>
                     </tr>
                 </thead>
@@ -62,11 +60,13 @@
                     {% if help_board_list %}
                     {% for help_board in help_board_list %}
                     <tr class="text-center">
-                        <td>{{ help_board.id }}</td>
-                        <td><a href="{{ help_board.id }}">{{ help_board.title|truncatechars:30 }}</a></td>
+                      <td>{{ help_board.help_date|date:'Y. m. d' }}</td>
+                        <td>
+                          <a href="{{ help_board.id }}">{{ help_board.title|truncatechars:30 }}</a>
+                          <span style="color: red;">[{{help_board.comments.count}}]</span>
+                        </td>
                         <td>{{ help_board.writer.Nickname }}</td>
                         <td>{{ help_board.region_last }}</td>
-                        <td>{{ help_board.help_date|date:'Y. m. d' }}</td>
                         <td>{{ help_board.hits }}</td>
                     </tr>
                     {% endfor %}

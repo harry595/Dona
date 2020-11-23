@@ -57,12 +57,12 @@
 
                 {% if msg.userone_id == user.id %}
                 <a href="?msg={{msg.id}}" >
-                  <p class="leftside_box heading" style="color: blueviolet; font-size:20px;font-family: 'Bamin';">{{msg.usertwo.Nickname}}</p>
+                  <p class="leftside_box heading" style="color: rgb(46, 21, 128); font-size:20px;font-family: 'Bamin';">{{msg.usertwo.Nickname}} - 나의 도움 요청</p>
                   <p class="leftside_box">{{msg.title}}</p>
                 </a>
                 {% else %}
                 <a href="?msg={{msg.id}}">
-                  <p class="leftside_box heading" style="color: blueviolet; font-size:20px; font-family: 'Bamin';">{{msg.userone.Nickname}}</p>
+                  <p class="leftside_box heading" style="color: rgb(46, 21, 128); font-size:20px; font-family: 'Bamin';">{{msg.userone.Nickname}}</p>
                   <p class="leftside_box">{{msg.title}}</p>
                 </a>
                 {% endif %}
@@ -84,20 +84,23 @@
                   <a class="btn_4" href="{% url 'message_delete' msg_id %}" onclick="return confirm('쪽지를 삭제하시겠습니까?');" style="float: right; margin-right:5px; font-size:smaller ">
                     <img src="{% static 'img/trash.png' %}" alt="" />
                   </a>
-                  <a class="btn_4" href="{% url 'help_clear' msg_id %}"   onclick="return confirm('도움을 완료하시겠습니까?');"style="float: right; margin-right:5px; font-size:smaller">
-                    <img src="{% static 'img/complete2.png' %}" alt="" />
-                  </a>
+                    {% if helper_id == user.id %}
+                    <a class="btn_4" href="{% url 'help_clear' msg_id %}"   onclick="return confirm('도움을 완료하시겠습니까?');"style="float: right; margin-right:5px; font-size:smaller">
+                      <img src="{% static 'img/complete2.png' %}" alt="" />
+                    </a>
+                    {% endif %}
                   {% endif %}
                 </div>
               </div>              
               {% for msg in msg_content %}
               <div class="rightside_send_box">
                   {% if msg.user_send == 1 %}
-                  <p class="rightside_send_top_box" style="font-size:20px; font-family: 'Bamin';">{{msg.message.userone.Nickname}}:</p>
-                  {% else %}
-                  <p class="rightside_recv_top_box" style="font-size:20px; font-family: 'Bamin';">{{msg.message.usertwo.Nickname}}:</p>
-                  {% endif %}
+                  <p class="rightside_send_top_box" style="font-size:20px; font-family: 'Bamin';">{{msg.message.userone.Nickname}}<span style="font-size: 11px;float:right;color:black">{{msg.registered_date|date:"M d, H:i"}}</span></p> 
                   <p class="rightside_bottom_box">{{msg.content}}</p>
+                  {% else %}
+                  <p class="rightside_recv_top_box" style="font-size:20px; font-family: 'Bamin';">{{msg.message.usertwo.Nickname}}<span style="font-size: 11px;float:right;color:black">{{msg.registered_date|date:"M d, H:i"}}</span> </p>
+                  <p class="rightside_bottom_box">{{msg.content}}</p>
+                  {% endif %}
               </div>
               {% empty %}
               <div  class="rightside_send_box">

@@ -60,22 +60,27 @@ def message(request):
     form = messagesForm()
     msg = request.GET.get('msg', None)
     user=request.user
+    helper_id=None
     if(msg is not None):
-        check_val=messages_Container.objects.filter(Q(id=msg)&(Q(userone=user)|Q(usertwo=user)))
+        check_val=messages_Container.objects.get(Q(id=msg)&(Q(userone=user)|Q(usertwo=user)))
+        helper_id=check_val.userone_id
         msg=int(msg)
         if not check_val:
             return redirect('message')
     msg_container=messages_Container.objects.filter(Q(userone=user)|Q(usertwo=user))
     msg_content=messages.objects.filter(Q(message_id=msg))
-    return render(request, 'message.html',{'msg_container': msg_container,'msg_content': msg_content,'form':form,'msg_id':msg})
+    return render(request, 'message.html',{'msg_container': msg_container,'msg_content': msg_content,'form':form,'msg_id':msg,'helper_id':helper_id})
 
-def person_ranking(request):   
-    return render(request, 'person_ranking.html')
+def person_ranking(request):  
+    person_rank=User.objects.filter(is_superuser=0).order_by('-helping')[:20]
+    return render(request, 'person_ranking.html',{'person_rank':person_rank})
 def region_ranking(request):   
-    return render(request, 'region_ranking.html')
+    region_rank=region.objects.all().order_by('-region_help')[:20]
+    return render(request, 'region_ranking.html',{'region_rank':region_rank})
     
 def mypage(request):   
-    return render(request, 'mypage.html')
+    person_rank= User.objects.filter(helping__gt=request.user.helping).count()
+    return render(request, 'mypage.html',{'person_rank':person_rank+1})
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -220,8 +225,7 @@ def help_clear(request, msg_id):
     helped_user=request.user 
     if(msg_id is None):
         return redirect('message')
-    check_help=messages_Container.objects.get(Q(id=msg_id)&Q(userone=helped_user))
-    print(check_help.userone)
+    check_help=messages_Container.objects.get(Q(id=msg_id) & Q(userone=helped_user))
     if not check_help:
         return redirect('message')
 
