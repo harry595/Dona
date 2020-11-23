@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/searchhome.css' %}" />
   </head>
   <body>
-    <div class="s013">
+    <div class="s013" style="overflow:auto;">
       <form>
         <fieldset>
           <legend>내 동네 찾기</legend>
@@ -21,7 +21,7 @@
           <div class="left">
             <div class="input-wrap first">
               <div class="input-field first">
-                <label>내 동네 이름(동,읍,면)으로 검색</label>
+                <label style="float: left;">내 동네 이름(동,읍,면)으로 검색</label>
                 <input type="text" id="town_input" class="town_input" placeholder="ex: 산본동, 우만동" />
               </div>
             </div>

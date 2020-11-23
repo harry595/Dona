@@ -29,6 +29,13 @@
   .leftside_header_contents:hover{
     background-color: rgb(241, 252, 252)
   }
+@FONT-FACE {
+  font-family: "Bamin";
+  src: url("{% static 'fonts/BMJUA_ttf.ttf' %}");
+}
+.leftside_header_content, .rightside_header_content{
+  font-family: "Bamin";
+}
 </style>
 
   <!-- banner part start-->
@@ -50,12 +57,12 @@
 
                 {% if msg.userone_id == user.id %}
                 <a href="?msg={{msg.id}}" >
-                  <p class="leftside_box" style="color: blueviolet;">{{msg.usertwo.Nickname}}</p>
+                  <p class="leftside_box heading" style="color: blueviolet; font-size:20px;font-family: 'Bamin';">{{msg.usertwo.Nickname}}</p>
                   <p class="leftside_box">{{msg.title}}</p>
                 </a>
                 {% else %}
                 <a href="?msg={{msg.id}}">
-                  <p class="leftside_box" style="color: blueviolet;">{{msg.userone.Nickname}}</p>
+                  <p class="leftside_box heading" style="color: blueviolet; font-size:20px; font-family: 'Bamin';">{{msg.userone.Nickname}}</p>
                   <p class="leftside_box">{{msg.title}}</p>
                 </a>
                 {% endif %}
@@ -70,14 +77,14 @@
             <div class="rightside" style="overflow:auto;">
               <div class="rightside_header">
                 <div class="rightside_header_content table-primary">쪽지 내용
-                  <a href="javascript:window.location.reload(true);" class="btn_4" style="float: right; margin-right:5px; font-size:smaller">
+                  <a href="javascript:window.location.reload(true);" class="btn_4" style="float: right; margin-right:5px; font-size:smaller ">
                     <img src="{% static 'img/refresh2.png' %}" alt="" />
                   </a>
                   {% if msg_content %}
-                  <a class="btn_4 " href="{% url 'message_delete' msg_id %}" onclick="return confirm('쪽지를 삭제하시겠습니까?');" style="float: right; margin-right:5px; font-size:smaller ">
+                  <a class="btn_4" href="{% url 'message_delete' msg_id %}" onclick="return confirm('쪽지를 삭제하시겠습니까?');" style="float: right; margin-right:5px; font-size:smaller ">
                     <img src="{% static 'img/trash.png' %}" alt="" />
                   </a>
-                  <a href="javascript:window.location.reload(true);" class="btn_4" style="float: right; margin-right:5px; font-size:smaller ">
+                  <a class="btn_4" href="{% url 'help_clear' msg_id %}"   onclick="return confirm('도움을 완료하시겠습니까?');"style="float: right; margin-right:5px; font-size:smaller">
                     <img src="{% static 'img/complete2.png' %}" alt="" />
                   </a>
                   {% endif %}
@@ -86,9 +93,9 @@
               {% for msg in msg_content %}
               <div class="rightside_send_box">
                   {% if msg.user_send == 1 %}
-                  <p class="rightside_send_top_box">{{msg.message.userone.Nickname}}</p>
+                  <p class="rightside_send_top_box" style="font-size:20px; font-family: 'Bamin';">{{msg.message.userone.Nickname}}:</p>
                   {% else %}
-                  <p class="rightside_recv_top_box">{{msg.message.usertwo.Nickname}}</p>
+                  <p class="rightside_recv_top_box" style="font-size:20px; font-family: 'Bamin';">{{msg.message.usertwo.Nickname}}:</p>
                   {% endif %}
                   <p class="rightside_bottom_box">{{msg.content}}</p>
               </div>

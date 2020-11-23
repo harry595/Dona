@@ -1,38 +1,64 @@
-{% extends "base.html" %} {% block content %} {% load static %}
+{% extends "base.html" %} 
+{% block content %} 
+{% load static %}
 <style>
     p {
         font-size: 14px;
     }
-    
-    th {
-        height: auto
+    .banner_part table td{
+        font-size:20px;
     }
+    .banner_part table th {
+        font-weight: normal;
+        font-size:30px;
+    }
+    span {
+        font-size:20px;
+    }
+    @FONT-FACE {
+        font-family: "Bamin";
+        src: url("{% static 'fonts/BMJUA_ttf.ttf' %}");
+    }
+    td,th,span,#myBtn,#myBtn2,h1{font-family: "Bamin";}
 </style>
 
 <!-- banner part start-->
 <section class="banner_part" style="background-color: #F8F9FA;">
     <div class="container">
-        <div class="align-items-center justify-content-center" style="text-align: center;">
+        <div class="row align-items-center justify-content-center" style="text-align: center;">
             <h1 style="font-size: 45px;margin-bottom: 5px;">MYPAGE</h1>
-            <span>
-              "{{user.Nickname}}" 님 안녕하세요!
-          </span>
             <div class="banner_text text-center;">
+                <span>
+                  "{{user.Nickname}}" 님 안녕하세요!
+                </span>
                 <br>
+                <br>
+                <table style="border:3px solid #0C3E72;text-align: center;padding-top: 50px; width: 50% !important; margin:auto; font-size:12px;display: table; ">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tbody>
+                        <tr style="background-color: rgb(253, 253, 228);">
+                            <th>Dona 유저 랭킹</th>
+                            <th>{{user.help}} 등</th>
+                        </tr>
+                    </tbody>
+                </table>
                 <br>
                 <table style="border:3px solid #0C3E72;text-align: center;padding-top: 50px; width: 100% !important; font-size:12px;display: table;">
                     <colgroup>
-                        <col width="20%">
-                        <col width="20%">
-                        <col width="20%">
-                        <col width="20%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
                     </colgroup>
                     <tbody>
-                        <tr>
-                            <th>Dona 준 횟수</th>
-                            <td>{{user.coin}} 번</td>
-                            <th>Dona 받은 횟수</th>
-                            <td>{{user.coin}} 번</td>
+                        <tr style="background-color: rgb(255, 232, 232);">
+                            <th>도움 나눔 횟수</th>
+                            <td>{{user.helping}} 번</td>
+                            <th>도움 받은 횟수</th>
+                            <td>{{user.helped}} 번</td>
                         </tr>
                         <tr>
                             <th>등록 지역1</th>
@@ -41,28 +67,36 @@
                             {% else %}
                             <td></td>
                             {% endif %}
-                            <td> {% if user.region1 %}<input type="button" id="myBtn" value="지역 변경 "> {% else %}
-                                <input type="button" id="myBtn" value="지역 등록 "> {% endif %}
+                            <td> 
+                                {% if user.region1 %}
+                                    <input type="button" class="btn-success" id="myBtn" value="지역 변경 "> 
+                                {% else %}
+                                    <input type="button" class="btn-primary" id="myBtn" value="지역 등록 "> 
+                                {% endif %}
                             </td>
                             <td></td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: rgb(255, 232, 232);">
                             <th>등록 지역2</th>
                             {% if user.region2 %}
                             <td>{{user.region2}}</td>
                             {% else %}
                             <td></td>
                             {% endif %}
-                            <td> {% if user.region2 %}
-                                <input type="button" id="myBtn2" value="지역 변경 "> {% else %}
-                                <input type="button" id="myBtn2" value="지역 등록 "> {% endif %}</td>
+                            <td> 
+                                {% if user.region2 %}
+                                    <input type="button" class="btn-success" id="myBtn2" value="지역 변경 "> 
+                                {% else %}
+                                    <input type="button" class="btn-primary" id="myBtn2" value="지역 등록 "> 
+                                {% endif %}
+                            </td>
                             <td></td>
                         </tr>
                         <tr>
                             <th>E-mail 주소</th>
                             <td>{{user.email}}</td>
-                            <td></td>
-                            <td></td>
+                            <th>닉네임</th>
+                            <td>{{user.Nickname}}</td>
                         </tr>
                     </tbody>
                 </table>

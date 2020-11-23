@@ -47,7 +47,8 @@ def message_make(request,id):
         new_message = messages_Container(
             userone=board.writer,
             usertwo=user,
-            title=board.title
+            title=board.title,
+            message_region=board.region
         )
         new_message.save()
         return redirect('message')
@@ -68,8 +69,10 @@ def message(request):
     msg_content=messages.objects.filter(Q(message_id=msg))
     return render(request, 'message.html',{'msg_container': msg_container,'msg_content': msg_content,'form':form,'msg_id':msg})
 
-def monthly_ranking(request):   
-    return render(request, 'monthly_ranking.html')
+def person_ranking(request):   
+    return render(request, 'person_ranking.html')
+def region_ranking(request):   
+    return render(request, 'region_ranking.html')
     
 def mypage(request):   
     return render(request, 'mypage.html')
@@ -186,13 +189,10 @@ def help(request):
     return render(request, 'help.html')
 def contact(request):   
     return render(request, 'contact.html')
-def yearly_ranking(request):   
-    return render(request, 'yearly_ranking.html')
 
 def add_content_to_msg(request, msg_id):
     user=request.user
     comments = request.POST.get('content', None)
-    print(comments)
     if messages_Container.objects.filter(id=msg_id,userone=user):
         flag=1
     else:
@@ -207,7 +207,53 @@ def add_content_to_msg(request, msg_id):
             messages.save()
             return HttpResponseRedirect('/%s?msg=%s' % ('message', msg_id))
     return redirect('message')
-            
+
+# 메시지에 도움 1이 추가되었습니다. 이거 넣으면 좋을듯 완료정보는 message_container에 너두고 메세지 맨 위에 {}}이렇게 사용하면 좋을듯
+# 추가로 user에 도움횟수만 추가하지말고 지역 정보에 +해야 region 왕 뽑을 수 있음
+# form : message/help_clear/10?help_day=2 이렇게 들어가려고 참고로 help_day는 1 이상으로 해야하고
+# 글을 올릴때 help_day가 도움 받은 횟수 /2 면 안됨 userone=board_writer /two= 도운 이
+@login_required
+def help_clear(request, msg_id):
+    
+    #help_day = request.GET.get('help_day', None)
+    help_day=1
+    helped_user=request.user 
+    if(msg_id is None):
+        return redirect('message')
+    check_help=messages_Container.objects.get(Q(id=msg_id)&Q(userone=helped_user))
+    print(check_help.userone)
+    if not check_help:
+        return redirect('message')
+
+    #도움 준 사람 도움 준 횟수 +1
+    helping_user=check_help.usertwo
+    tmp_helping=helping_user.helping
+    helping_user.helping=tmp_helping+help_day
+    helping_user.save()
+
+    #도움 받은 사람 도움 받은 횟수 +1
+    tmp_helped=helped_user.helped
+    helped_user.helped=tmp_helped+help_day
+    helped_user.save()
+
+    #도움 지역 +1
+    help_region=check_help.message_region
+    check_region=region.objects.get(Q(region_name=help_region))
+    tmp_count=check_region.region_help
+    check_region.region_help=tmp_count+help_day
+    check_region.save()
+
+    #msg에 추가
+    thanks_message=messages()
+    thanks_message.message_id=msg_id
+    thanks_message.content="도움을 주셔서 감사합니다. 도움 횟수 + 1"
+    thanks_message.user_send=1
+    thanks_message.save()
+    return HttpResponseRedirect('/%s?msg=%s' % ('message', msg_id))
+
+
+
+
 def add_comment_to_post(request, help_board_id):
     board=get_object_or_404(help_board, pk=help_board_id)
     if request.method == "POST":

@@ -50,7 +50,6 @@ $(".btn-search").click(function(){
 $(".btn-2").click(function(){
   var town_input=$("#town option:selected").val()
   var btnToken=$("#btnToken").val()
-  alert(btnToken)
   $.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
     type: "POST", // 데이터를 전송하는 방법을 지정
     url: 'townenroll/', // 통신할 url을 지정

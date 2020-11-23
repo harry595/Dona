@@ -7,8 +7,9 @@ from datetime import datetime
 from django.conf import settings
 
 class User(AbstractUser):
-    Nickname=models.CharField(max_length=6)
-    coin=models.IntegerField(default=10)
+    Nickname=models.CharField(max_length=6,null=True)
+    helped=models.IntegerField(default=0)
+    helping=models.IntegerField(default=0)
     region1=models.CharField(max_length=50,null=True)
     region2=models.CharField(max_length=50,null=True)
 
@@ -16,6 +17,7 @@ class region(models.Model):
     objects = models.Manager()
     region_id=models.IntegerField()
     region_name = models.CharField(max_length=50, blank=True)
+    region_help=models.IntegerField(default=0)
 
 class help_board(models.Model):
     objects = models.Manager()
@@ -24,7 +26,6 @@ class help_board(models.Model):
     content = models.TextField(verbose_name='내용')
     region=models.CharField(max_length=50, verbose_name='도움 지역')
     region_last=models.CharField(max_length=20,verbose_name='도움 지역 읍면동', null=True)
-    help_coin=models.IntegerField(verbose_name='코인 개수',default=10)
     hits = models.PositiveIntegerField(verbose_name='조회수', default=0)
     registered_date = models.DateTimeField(auto_now_add=True, verbose_name='등록시간')
     help_date = models.DateTimeField(verbose_name='Dona 요청일',default=datetime.now, blank=True)
@@ -40,6 +41,7 @@ class messages_Container(models.Model):
     userone = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user1', null=True, on_delete=models.CASCADE, verbose_name='도움 받을 사람')
     usertwo = models.ForeignKey(settings.AUTH_USER_MODEL,  related_name='user2', null=True, on_delete=models.CASCADE, verbose_name='도와줄 사람')
     unread_count = models.IntegerField(verbose_name='미확인 쪽지 수', default=0)
+    message_region = models.CharField(max_length=50,blank=True)
     def __str__(self):
         return self.title
 

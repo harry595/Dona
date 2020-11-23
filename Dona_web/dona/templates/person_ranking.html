@@ -1,0 +1,54 @@
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+<style>
+  .banner_part table th{
+    height: 50px;
+    background-color: antiquewhite;
+  }
+</style>
+  <!-- banner part start-->
+  <section class="banner_part" style="height: 2000px; background-color: #F8F9FA;">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+          <div class="banner_text text-center">
+            <div class="banner_text_iner">
+              <h2>개인 Dona Ranking <img src="{% static 'img/monthly_ranking.png' %}" style="max-width: 100px; height:auto;" alt="logo" /></h2>
+            </div>
+            <div>
+            <table border="1" class="table table-hover">
+              <colgroup>
+                <col width="20%"/>
+                <col width="40%"/>
+                <col width="20%"/>
+                <col width="20%"/>
+              </colgroup>
+              <thead>
+              <th>월간 Ranking</th>
+              <th>이름</th>
+              <th>지역</th>
+              <th>Dona 횟수</th>
+            </thead>
+            <tbody>
+              <tr><!-- 첫번째 줄 시작 -->
+                  <td>첫번째 칸</td>
+                  <td>두번째 칸</td>
+                  <td>두번째 칸</td>
+                  <td>두번째 칸</td>
+              </tr><!-- 첫번째 줄 끝 -->
+              <tr><!-- 두번째 줄 시작 -->
+                  <td>첫번째 칸</td>
+                  <td>두번째 칸</td>
+                  <td>두번째 칸</td>
+                  <td>두번째 칸</td>
+              </tr><!-- 두번째 줄 끝 -->
+            </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
