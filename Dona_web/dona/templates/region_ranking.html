@@ -29,14 +29,12 @@
             <table class="table table-hover">
               <colgroup>
                 <col width="20%"/>
-                <col width="40%"/>
-                <col width="20%"/>
+                <col width="60%"/>
                 <col width="20%"/>
               </colgroup>
               <thead>
               <th>Ranking</th>
-              <th>지역</th>
-              <th>Dona 횟수</th>
+              <th style="width:1000px;">지역</th>
               <th>Dona 횟수</th>
               </thead>
             <tbody>
@@ -44,7 +42,6 @@
               <tr>
                   <td>{{ forloop.counter }}</td>
                   <td>{{rank.region_name}}</td>
-                  <td>{{rank.region_help}}</td>
                   <td>{{rank.region_help}}</td>
               </tr>
               {% endfor %}

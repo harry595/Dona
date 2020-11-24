@@ -11,20 +11,34 @@
     }
     
 </style>
+
+<p hidden>{{ board.update_counter }}</p>
 <section class="banner_part" style="height: 2000px; background-color: #F8F9FA; ">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-10">
                 <div class="banner_text_iner">
                     <div class="card" style="margin-top: 20px;">
+                        {% if messages %}
+                            {% for error in messages %}
+                                <div class="alert alert-danger"  style="text-align:center;">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <div class="card-body" style="overflow:auto; max-height:1000px;min-height:300px;">
                             <h2 class="card-title" style="display: inline-block;">{{ board.title }}</h2>
                             <br>
+                            {% if board.writer.id == user.id %}
+                            <form method="POST" action="{% url 'delete' board.id %}" onclick="return confirm('글을 삭제하시겠습니까?');" class="post-form" style="float: right;">{% csrf_token %}
+                                <button type="submit" class="save btn btn-danger">글 삭제</button>
+                            </form>
+                            {% else %}
                             <form method="POST" action="{% url 'message_make' board.id %}" class="post-form" style="margin-top:20px;float:right">{% csrf_token %}
                                 <button type="submit" class="save btn btn-info">쪽지 보내기</button>
                             </form>
+                            {% endif %}
                             <br>
-                            {{board.update_counter}}
                             <span>작성자 :  {{ board.writer.Nickname }}</span><br>
                             <span>도움 요청일: {{ board.help_date|date:'Y. m. d H:i' }}</span>
                             <hr>

@@ -2365,7 +2365,7 @@ ul {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
     height: 650px;
-    background-color: #f0eed4;
+    background-color: #FBF7F2;
   }
 }
 
@@ -2373,7 +2373,7 @@ ul {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
     height: 650px;
-    background-color: #f0eed4;
+    background-color: #FBF7F2;
   }
 }
 
@@ -2381,7 +2381,7 @@ ul {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
     height: 700px;
-    background-color: #f0eed4;
+    background-color: #FBF7F2;
   }
 }
 
@@ -2964,6 +2964,7 @@ ul {
 .event_part {
   background-position: center;
   background-size: cover;
+  background-image: url("/static/img/main.jpg");
   background-repeat: no-repeat;
   background-color: #E6F3E6;
 }
@@ -3055,14 +3056,14 @@ ul {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 60, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_event_part.scss */
   .event_part .owl-nav .owl-next {
-    right: -5%;
+    right: -10%;
   }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) {
   /* line 60, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_event_part.scss */
   .event_part .owl-nav .owl-next {
-    right: -5%;
+    right: -10%;
   }
 }
 
@@ -5657,7 +5658,7 @@ h6 {
   text-align: left; padding: 1.7% 0 1.7% 4%; font-size: 20px;
 }
 .leftside_header_contents{
-  padding: 12px 0 12px 0;border-bottom:1px solid;
+  padding: 12px 3px 12px 0;border-bottom:1px solid;
 }
 .leftside_box{
   text-align: left; padding: 0 0 0 2%;
@@ -5673,7 +5674,7 @@ h6 {
   text-align: left; padding: 1% 0 1% 2%; font-size: 20px;
 }
 .rightside_send_box{
-  padding: 12px 0 12px 0; border-bottom:1px solid;
+  padding: 12px 8px 12px 0; border-bottom:1px solid;
 }
 .rightside_send_top_box{
   text-align: left; padding: 0 0 0 2%;font-size:14px;color:#0ca5af;
@@ -5756,3 +5757,9 @@ h6 {
   width:100%;
 }
 .gj-datepicker{ width: 200px; }
+img.alignright {float:right; margin:0 0 1em 1em}
+img.alignleft {float:left; margin:0 1em 1em 0}
+img.aligncenter {display: block; margin-left: auto; margin-right: auto}
+.alignright {float:right; }
+.alignleft {float:left; }
+.aligncenter {display: block; margin-left: auto; margin-right: auto}

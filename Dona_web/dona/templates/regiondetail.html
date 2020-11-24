@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<style>
+    #id_comment_text {
+        width: 90%;
+        height: 30px;
+    }
+    
+    .save {
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+    
+</style>
+<section class="banner_part" style="height: 2000px; background-color: #F8F9FA; ">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-10">
+                <div class="banner_text_iner">
+                    <div class="card" style="margin-top: 20px;">
+                        {% if messages %}
+                            {% for error in messages %}
+                                <div class="alert alert-danger"  style="text-align:center;">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="card-body" style="overflow:auto; max-height:1000px;min-height:300px;">
+                            <p hidden>{{ board.update_counter }}</p>
+                            <h2 class="card-title" style="display: inline-block;">{{ board.title }}</h2>
+                            <br>
+                            {% if board.writer.id == user.id %}
+                            <form method="POST" action="{% url 'region_delete' board.id %}" onclick="return confirm('글을 삭제하시겠습니까?');" class="post-form" style="float: right;">{% csrf_token %}
+                                <button type="submit" class="save btn btn-danger">글 삭제</button>
+                            </form>
+                            <br>
+                            {% else %}
+                            <form method="POST" action="{% url 'region_message_make' board.id %}" class="post-form" style="margin-top:20px;float:right">{% csrf_token %}
+                                <button type="submit" class="save btn btn-info">쪽지 보내기</button>
+                            </form>
+                            <br>
+                            {% endif %}
+                            <br>
+                            <span>작성자 :  {{ board.writer.Nickname }}</span><br>
+                            <hr>
+                            {{ board.content | safe }}
+                            <small class="text-muted" style="position: absolute; bottom: 30px; right: 20px;">{{ board.registered_date|date:'Y. m. d H:i' }}</small><br>
+                            <span class="card-text" style="position: absolute; bottom: 10px; right: 20px;">{{ board.region }}</span>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-body" id="comment" style="overflow:auto; width:100%; min-height:300px; max-height:600px; padding:10px; padding-top:0px">
+                            <br><h4>댓글 ({{board.comments.count}})</h4> <br> 
+                            {% for comment in board.comments.all %}
+                            
+                            <div class="card" style="margin-top: 20px;">
+                                <div class="card-body">
+                                    <strong>{{ comment.author.Nickname }} <div class="date" style="float:right;font-weight: normal;">{{ comment.created_at }}</div></strong>
+                                    
+                                    <p>{{ comment.comment_text|linebreaks }}</p>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <p>No comments here yet :(</p>
+                            {% endfor %}
+                            <div class="card" style="margin-top: 20px;">
+                                <div class="card-body">
+                                    <form method="POST" action="{% url 'add_comment_to_region_post' board.id %}" class="post-form">{% csrf_token %} {{ form }}
+                                        <button type="submit" class="save btn btn-success">등록</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

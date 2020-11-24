@@ -2,9 +2,9 @@ from dona.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
-from .models import help_board
+from .models import help_board, region_board
 from django_summernote.widgets import SummernoteWidget
-from .models import Comment, messages
+from .models import Comment, messages, RegionComment
 
 class CustomUserCreationForm(forms.Form):
     username = forms.CharField(
@@ -14,13 +14,13 @@ class CustomUserCreationForm(forms.Form):
     password2 = forms.CharField(
         label='Confirm password', widget=forms.PasswordInput)
     Nickname = forms.CharField(
-        label='Enter Nickname', min_length=2, max_length=10)
+        label='Enter Nickname', min_length=2, max_length=6)
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
         r = User.objects.filter(username=username)
         if r.count():
-            raise ValidationError("Username already exists")
+            raise ValidationError("ID already exists")
         return username
 
     def clean_Nickname(self):
@@ -42,7 +42,7 @@ class CustomUserCreationForm(forms.Form):
         password2 = self.cleaned_data.get('password2')
 
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Password don't match")
+            raise ValidationError("Password doesn't match")
 
         return password2
 
@@ -63,9 +63,22 @@ class PostForm(forms.ModelForm):
             'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}),
         }
 
+class RegionPostForm(forms.ModelForm):
+    class Meta:
+        model = region_board
+        fields = ['title', 'content']
+        widgets = {
+            'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '400px'}}),
+        }
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment
+        fields=('comment_text',)
+
+class RegionCommentForm(forms.ModelForm):
+    class Meta:
+        model=RegionComment
         fields=('comment_text',)
 
 class messagesForm(forms.ModelForm):

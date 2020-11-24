@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<!-- for datepicker -->
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-bs4.min.js"></script>
+<script src="{% static 'js/summernote-ko-KR.js' %}"></script>
+
+<!-- jQuery -->
+<script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}" />
+
+<section style="background-color: aliceblue; height: 1000px; vertical-align: middle; text-align: center; padding-top: 2%;">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <h2>게시글 작성</h2>
+    <table style="border:0; width:60%; margin:auto; text-align:center; margin-top: 30px;">
+        {{form.as_table}}
+    </table> 
+    <table style="text-align: center; width: 60%; margin:auto; border:0;">
+        <colgroup>
+          <col width="7%"/>
+          <col width="10%"/>
+          <col width="7%"/>
+          <col width="10%"/>
+          <col width="56%"/>
+          <col width="10%"/>
+        </colgroup>
+        <tr>
+            <td>지역 :</td>
+            <td>
+                <select name="region" required="" id="id_region">
+                    <option disabled>----------------------------------</option>
+                    {% if user.region1 is None and user.region2 is None %}
+                    <option value="not-specified" disabled>마이 페이지에서 지역을 선택해주세요</option>
+                    {% else %}
+                        {% if user.region1 %}
+                            <option value="{{user.region1}}">{{user.region1}}</option>
+                        {% endif %}
+                        {% if user.region2 %}
+                            <option value="{{user.region2}}">{{user.region2}}</option>
+                        {% endif %}
+                    {% endif %}
+                </select>
+            </td>
+            <td></td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+                <input type="submit" class="btn btn-success" style="float:right;"value="제출">
+            </td>
+        </tr>
+    </table>
+  </form>
+
+</section>
+<script type="text/javascript">
+    jQuery.datetimepicker.setLocale('de');
+    jQuery('#datetimepicker').datetimepicker({
+     i18n:{
+      de:{
+       months:[
+        '1월','2월','3월','4월',
+        '5월','6월','7월','8월',
+        '9월','10월','11월','12월',
+       ],
+       dayOfWeek:[
+        "Su.", "Mo", "Tu", "We", 
+        "Th", "Fr", "Sa.",
+       ]
+      }
+     },
+     format:'Y-m-d H:i'
+    });
+
+    $(document).ready(function () {
+        $('.note-editor').summernote({
+            placeholder: '내용을 입력해주세요.',
+            lang: 'ko-KR',
+           
+            toolbar: [
+            ['style', ['style']],
+            ['font-size', ['font-size']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'help']]
+            ]
+        });
+        $('.note-resizebar').css('display','none');
+    });
+    $(document).ready( function(){
+        $('#id_title').attr('placeholder','제목을 입력해주세요.');
+        $("th").empty();
+    });
+    
+</script>
+{% endblock %}

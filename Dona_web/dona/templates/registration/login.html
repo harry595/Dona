@@ -19,11 +19,21 @@
   <section class="banner_part" style="background-color: #56baed;">
     
     <div class="container">
-      {% if form.errors %}
-      <p style="color:yellow;">아이디, 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
-      {% endif %}
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger"  style="text-align:center;">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" style="text-align:center;">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+        {% endif %}
 
-      
         <div class="wrapper fadeInDown">
           <div id="formContent">
             {% if user.is_authenticated %}

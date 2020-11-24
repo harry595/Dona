@@ -10,6 +10,7 @@ class User(AbstractUser):
     Nickname=models.CharField(max_length=6,null=True)
     helped=models.IntegerField(default=0)
     helping=models.IntegerField(default=0)
+    recent_help = models.DateTimeField(verbose_name='최근 Dona', default='2020-01-01 00:00:00.000000')
     region1=models.CharField(max_length=50,null=True)
     region2=models.CharField(max_length=50,null=True)
 
@@ -38,13 +39,33 @@ class help_board(models.Model):
     def update_counter(self):
         self.hits=self.hits+1
         self.save()
+        
+
+class region_board(models.Model):
+    objects = models.Manager()
+    writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, verbose_name='작성자')
+    title=models.CharField(max_length=50)
+    content = models.TextField(verbose_name='내용')
+    region=models.CharField(max_length=50, verbose_name='지역')
+    region_last=models.CharField(max_length=20,verbose_name='지역 읍면동', null=True)
+    hits = models.PositiveIntegerField(verbose_name='조회수', default=0)
+    registered_date = models.DateTimeField(auto_now_add=True, verbose_name='등록시간')
+    top_fixed = models.BooleanField(verbose_name='상단고정', default=False)
+    
+    def __str__(self):
+        return self.title
+    @property
+    def update_counter(self):
+        self.hits=self.hits+1
+        self.save()
 
 class messages_Container(models.Model):
     objects = models.Manager()
     title=models.CharField(max_length=50)
     userone = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user1', null=True, on_delete=models.CASCADE, verbose_name='도움 받을 사람')
     usertwo = models.ForeignKey(settings.AUTH_USER_MODEL,  related_name='user2', null=True, on_delete=models.CASCADE, verbose_name='도와줄 사람')
-    unread_count = models.IntegerField(verbose_name='미확인 쪽지 수', default=0)
+    userone_unread = models.IntegerField(verbose_name='유저1 미확인 쪽지 수', default=0)
+    usertwo_unread = models.IntegerField(verbose_name='유저2 미확인 쪽지 수', default=0)    
     message_region = models.CharField(max_length=50,blank=True)
     def __str__(self):
         return self.title
@@ -61,6 +82,18 @@ class messages(models.Model):
 
 class Comment(models.Model):
     post=models.ForeignKey(help_board, related_name='comments', on_delete=models.CASCADE)
+    author= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    comment_text=models.TextField()
+    created_at=models.DateTimeField(default=timezone.now) 
+
+    def approve(self):
+        self.save()
+
+    def __str__(self):
+        return self.comment_text
+    
+class RegionComment(models.Model):
+    post=models.ForeignKey(region_board, related_name='comments', on_delete=models.CASCADE)
     author= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     comment_text=models.TextField()
     created_at=models.DateTimeField(default=timezone.now) 

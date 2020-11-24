@@ -2,16 +2,64 @@
 {% block content %}
 {% load static %}
 
+<style>
+  .main-title{
+    font-size:4rem;
+  }
+  .main-text{
+    font-size: 1.6rem;
+  }
+  @FONT-FACE {
+      font-family: "Bamin";
+      src: url("{% static 'fonts/BMJUA_ttf.ttf' %}");
+  }
+  h2{font-family: "Bamin"; font-weight: normal;}
+
+  .banner_text_iner img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .Dona_title{
+    text-align: center;
+    padding-top: 23rem;
+  }
+</style>
+
   <!-- Header part end-->
   <!-- banner part start-->
-  <section class="banner_part" style="background-image: url('/static/img/main.jpg');">
+  <section class="banner_part" style="background-image: url('/static/img/main3.jpg');">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div>
+          <div class="banner_text text-center" >
+            <div class="banner_text_iner" style="color: rgb(255, 255, 255); font-size: 24px;">
+              <h2 class="Dona_title" style="color: rgb(255, 255, 255); font-size: 60px;">DONA<br>도움을 나누다</h2>
+              <p>이웃들과 사소한 도움을 나누며<br> 따듯하고 정감있는 이웃사촌이 되어주세요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="banner_part" style="background-color: white; height:auto; margin-top: 100px; margin-bottom: 100px; min-height: 900px;">
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-10">
-          <div class="banner_text text-center">
+          <div class="banner_text">
             <div class="banner_text_iner">
-              <h1>도움 나눔</h1>
-              <p>이웃끼리 도움좀 나눠 봅시당!!</p>
+              <div style="padding-left: 3rem; padding-top: 3rem;">
+                <img src="{% static 'img/help_board5.png' %}" class="alignleft" style="max-width: 100%; margin-right: 80px;"/>
+                <div><br>
+                  <h2 class="main-title"  style="text-align: left;">&lt; 게시판 &gt;</h2>
+                  <p class="main-text" style="text-align: left;font-size: 16px;">게시판에 도움을 요청하세요! <br>당신을 도와줄 이웃사촌들이 있어요 :)</p>
+                </div>
+              </div>
+              <div style="padding-top: 10rem;">
+                <img src="{% static 'img/help_message4.png' %}" class="alignright" style="max-width: 50%; margin-left: 100px;"/>
+                <div style="padding-left: 100px;"><br><br>
+                  <h2 class="main-title"  style="text-align: left;">&lt; 쪽지 &gt;</h2>
+                  <p class="main-text" style="text-align: left;font-size: 16px;">도움을 줄 이웃사촌을 찾았다면<br> 인사를 나누고 대화를 시작하세요 :)</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -20,15 +68,14 @@
   </section>
   <!-- banner part start-->
   <!--top place start-->
-  <section class="top_place section_padding">
+  <section class="top_place section_padding" style="background-color: aliceblue; ">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-xl-6">
           <div class="section_tittle text-center">
             <h2>Dona의 목적</h2>
             <p>
-              품앗이를 생각하며 개발, 이웃 커뮤니티의 활성화, 사소한 도움을
-              주고받기
+              당신에게 도움이 필요한 순간, 이웃사촌의 손을 잡을 수 있도록.
             </p>
           </div>
         </div>
@@ -41,17 +88,9 @@
               class="hover_Text d-flex align-items-end justify-content-between"
             >
               <div class="hover_text_iner">
-                <a href="#" class="place_btn">travel</a>
-                <h3>가까운 이웃이 먼 친척보다 낫다</h3>
-                <p>Technaf, Bangladesh</p>
-                <div class="place_review">
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <span>(210 review)</span>
-                </div>
+                <a class="place_btn" disable>Neighbor</a>
+                <h3>먼 친척보다 가까운 이웃</h3>
+                <p style="margin-top: 20px;">“가까운 이웃이 먼 친척보다 낫다” 한국사람이라면 누구나 들어보았을 법한 속담입니다. Dona는 도움이 필요한 당신이 이웃에게 도움을 요청할 수 있도록 도울게요.</p>
               </div>
             </div>
           </div>
@@ -63,17 +102,9 @@
               class="hover_Text d-flex align-items-end justify-content-between"
             >
               <div class="hover_text_iner">
-                <a href="#" class="place_btn">travel</a>
+                <a class="place_btn" disable>Recover</a>
                 <h3>잃어버린 지역공동체 회복</h3>
-                <p>Technaf, Bangladesh</p>
-                <div class="place_review">
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <span>(210 review)</span>
-                </div>
+                <p style="margin-top: 20px;">물질은 풍요로워졌지만 마음 한구석이 허전하지 않나요. 어린 시절 대문 밖을 나서면 나를 반겨주던 친구들, 인사를 따듯하게 받아주시던 어르신들은 다들 어디로 가셨을까요. Dona는 "이웃사촌"들이 되살아나길 바라요.</p>
               </div>
             </div>
           </div>
@@ -85,17 +116,9 @@
               class="hover_Text d-flex align-items-end justify-content-between"
             >
               <div class="hover_text_iner">
-                <a href="#" class="place_btn">travel</a>
-                <h3>선한 영향력의 반복</h3>
-                <p>품앗이</p>
-                <div class="place_review">
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <span>(210 review)</span>
-                </div>
+                <a class="place_btn" disable>Cycle</a>
+                <h3>선한 영향력의 순환</h3>
+                <p style="margin-top: 20px;">누구에게나 도움이 필요한 순간이 찾아옵니다. 당신이 먼저 손을 내민다면, 언젠가 당신이 도움을 필요로 하는 순간에 누군가가 손을 내밀어 줄 거예요. Dona는 당신의 선한 영향력이 물결처럼 번져나가길 바라요.</p>
               </div>
             </div>
           </div>
@@ -107,17 +130,9 @@
               class="hover_Text d-flex align-items-end justify-content-between"
             >
               <div class="hover_text_iner">
-                <a href="#" class="place_btn">travel</a>
+                <a class="place_btn" disable>Community</a>
                 <h3>지역 커뮤니티 활성화</h3>
-                <p>Technaf, Bangladesh</p>
-                <div class="place_review">
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <a href="#"><i class="fas fa-star"></i></a>
-                  <span>(210 review)</span>
-                </div>
+                <p style="margin-top: 20px;">바쁜 현대사회, 힘겹게 일을 마치고 돌아오면 이불 밖으로 나가고 싶지 않습니다. 그럴수록 이웃들과는 점점 소원해졌죠. Dona는 당신이 침대에 누워서도 이웃들과 소통할 수 있도록 도울게요.</p>
               </div>
             </div>
           </div>
@@ -131,28 +146,27 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="event_slider owl-carousel">
+          <div class="event_slider owl-carousel"  style="text-align: center;">
             <div class="single_event_slider">
               <div class="row justify-content-end">
                 <div class="col-lg-6 col-md-6">
-                  <div class="event_slider_content">
-                    <h5>이번달 도움 왕 1등</h5>
-                    <h2>M대박이다</h2>
-                    <p>ㄹㅇ 대박이다</p>
-                    <p>date: <span>12 Aug 2019</span></p>
-                    <p>Cost: <span>Start from $820</span></p>
-                    <p>Organizer: <span> Martine Agency</span></p>
-                    <div class="rating">
-                      <span>Rating:</span>
-                      <div class="place_review">
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
+                  <div class="event_slider_content" >
+                    <h5>이번 달 도움 왕 1등</h5>
+                    <h2>서울시 동작구 흑석동 <br>- 농민의손톱 -</h2>
+                    <p><span>“가까운 이웃이 먼 친척보다 낫네요”</span></p>
+                    <p>도나를 통해 오랫동안 잊고 있던 이웃의 가치를 알게 되었네요. 
+                      시간 나는대로 틈틈히 주변사람들을 도왔는데 이번 달 1등이라니 기분이 묘합니다. 
+                      앞으로도 더 많은 사람들이 Dona에 참여했으면 좋겠습니다. </p>
+                      <div class="rating">
+                        <span>Rating:</span>
+                        <div class="place_review">
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                        </div>
                       </div>
-                    </div>
-                    <a href="#" class="btn_1">Plan Details</a>
                   </div>
                 </div>
               </div>
@@ -161,27 +175,21 @@
               <div class="row justify-content-end">
                 <div class="ol-lg-6 col-md-6">
                   <div class="event_slider_content">
-                    <h5>이번달 도움 왕 2등</h5>
-                    <h2>Maldeve - Asia</h2>
-                    <p>
-                      Waters make fish every without firmament saw had.
-                      Morning air subdue. Our. Air very one. Whales grass is
-                      fish whales winged.
-                    </p>
-                    <p>date: <span>12 Aug 2019</span></p>
-                    <p>Cost: <span>Start from $820</span></p>
-                    <p>Organizer: <span> Martine Agency</span></p>
-                    <div class="rating">
-                      <span>Rating:</span>
-                      <div class="place_review">
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
-                        <a href="#"><i class="fas fa-star"></i></a>
+                    <h5>이번 달 도움 왕 2등</h5>
+                    <h2>경기도 수원시 우만동 <br>- 우만동메르시 -</h2>
+                    <p><span>“제 도움이 물결처럼 퍼지길”</span></p>
+                    <p>누구에게나 도움이 필요한 순간이 찾아옵니다. 
+                      당신이 먼저 손을 내민다면, 언젠가 당신이 도움을 필요로 하는 순간에 누군가가 손을 내밀어 줄 거예요. 오늘도 힘내세요</p>
+                      <div class="rating">
+                        <span>Rating:</span>
+                        <div class="place_review">
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                          <a href="#"><i class="fas fa-star"></i></a>
+                        </div>
                       </div>
-                    </div>
-                    <a href="#" class="btn_1">Plan Details</a>
                   </div>
                 </div>
               </div>
@@ -190,16 +198,10 @@
               <div class="row justify-content-end">
                 <div class="ol-lg-6 col-md-6">
                   <div class="event_slider_content">
-                    <h5>이번달 도움 왕 3등</h5>
-                    <h2>Maldeve - Asia</h2>
-                    <p>
-                      Waters make fish every without firmament saw had.
-                      Morning air subdue. Our. Air very one. Whales grass is
-                      fish whales winged.
-                    </p>
-                    <p>date: <span>12 Aug 2019</span></p>
-                    <p>Cost: <span>Start from $820</span></p>
-                    <p>Organizer: <span> Martine Agency</span></p>
+                    <h5>이번 달 도움 왕 3등</h5>
+                    <h2>경기도 군포시 산본동<br>- 산본동뽀로로 -</h2>
+                    <p><span>“이웃들과 교감하는 즐거움”</span></p>
+                    <p>이거 시작하기 전까지는 옆집에 누가 사는지도 몰랐거든요. Dona를 시작하면서 아는 사람도 많아지고 이불 밖으로 나가게 되는 것 같아서 즐거웠어요.</p>
                     <div class="rating">
                       <span>Rating:</span>
                       <div class="place_review">
@@ -210,7 +212,6 @@
                         <a href="#"><i class="fas fa-star"></i></a>
                       </div>
                     </div>
-                    <a href="#" class="btn_1">Plan Details</a>
                   </div>
                 </div>
               </div>
@@ -228,37 +229,37 @@
         <div class="col-xl-6">
           <div class="section_tittle text-center">
             <h2>도움의 예시</h2>
-            <p>알바를 구하기 민망할 정도의 일들을 도움으로 대체</p>
+            <p>이웃에게 과도한 노동력이 요구되지 않는 소소한 도움을 요청하세요</p>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="text-align: center;">
         <div class="col-lg-3 col-sm-6">
           <div class="single_ihotel_list">
             <img src="{% static 'img/help1.jpg' %}" alt="" />
-            <h3><a href="#"> 택배 대신 수령</a></h3>
-            <p>이웃끼리 택배좀 대신 수령하자</p>
+            <h3><a> 물건 빌려주기</a></h3>
+            <p>평소에 잘 사용하지 않는 물건이 <br>필요할때 이웃에게 부탁하세요</p>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6">
           <div class="single_ihotel_list">
             <img src="{% static 'img/help2.jpg' %}" alt="" />
-            <h3><a href="#"> 반려견 돌봐주기</a></h3>
-            <p>여행갔을때 대신 좀 돌봐주자</p>
+            <h3><a> 반려견 맡아주기</a></h3>
+            <p>반려견을 돌볼 수 없는 사정이 생기면 잠시 이웃에게 맡겨요</p>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6">
           <div class="single_ihotel_list">
             <img src="{% static 'img/help3.jpg' %}" alt="" />
-            <h3><a href="#"> 이사 도와주기</a></h3>
-            <p>새로 이사왔는데 좀 도와주자</p>
+            <h3><a> 카풀 </a></h3>
+            <p>출근 경로가 겹치는 이웃과 함께 <br>출근하고 환경 보호에도 기여하세요</p>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6">
           <div class="single_ihotel_list">
             <img src="{% static 'img/help4.jpg' %}" alt="" />
-            <h3><a href="#"> 식물 대신 키워주기</a></h3>
-            <p>여행가는데 내 화분들 어떡하지...ㅠㅠ물안주면 다주거~</p>
+            <h3><a>택배 대리 수령</a></h3>
+            <p>택배를 맡겨놓을 곳이 녹록치 않은 경우 이웃에게 도움을 요청하세요</p>
           </div>
         </div>
       </div>

@@ -44,7 +44,13 @@
               <tr>
                   <td>{{ forloop.counter }}</td>
                   <td>{{rank.Nickname}}</td>
+                  {% if rank.region1 %}
                   <td>{{rank.region1}}</td>
+                  {% elif rank.region2 %}
+                  <td>{{rank.region2}}</td>
+                  {% else %}
+                  <td>지역 없음</td>
+                  {% endif %}
                   <td>{{rank.helping}}</td>
               </tr>
               {% endfor %}

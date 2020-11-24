@@ -17,7 +17,23 @@
 <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
   <!-- banner part start-->
   <section class="banner_part" style="background-color: #56baed;">
+
     <div class="container">
+      {% if form.errors %}
+      {% for field in form %}
+          {% for error in field.errors %}
+              <div class="alert alert-danger"  style="text-align:center;">
+                  <strong>{{ error|escape }}</strong>
+              </div>
+          {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+          <div class="alert alert-danger" style="text-align:center;">
+              <strong>{{ error|escape }}</strong>
+          </div>
+      {% endfor %}
+      {% endif %}
+
       <div class="wrapper fadeInDown">
         <div id="formContent">
           <!-- Tabs Titles -->
