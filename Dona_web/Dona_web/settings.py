@@ -26,10 +26,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '5xkgo5_4#cej1h(kl8i29j!)k07339esqhg!t&*ta=qqm75nea'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#위에꺼 나중에 바꿔야함
+DEBUG = False
 
-ALLOWED_HOSTS = '*'
+ALLOWED_HOSTS = [
+    '*',
+    'donahelper.pythonanywhere.com'
+]
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -180,9 +182,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 STATIC_URL = '/static/'
-
+'''
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'dona', 'static')
 ]
-
+'''
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

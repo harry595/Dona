@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import handler400,handler403,handler404,handler500
+
+
+handler400='dona.views.bad_request'
+handler403='dona.views.permission_denied'
+handler404='dona.views.page_not_found'
+handler500='dona.views.server_error'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('dona.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

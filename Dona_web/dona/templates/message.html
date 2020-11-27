@@ -112,7 +112,7 @@
                     <img src="{% static 'img/trash.png' %}" alt="" />
                   </a>
                     {% if helper_id == user.id and use_complete == 1 %}
-                    <a class="btn_4" href="{% url 'help_clear' msg_id %}"   onclick="return confirm('도움을 완료하시겠습니까?');"style="float: right; margin-right:5px; padding:4px 5px 4px 5px; font-size:smaller">
+                    <a class="btn_4" href="{% url 'help_clear' msg_id %}"   onclick="return confirm('도움 완료 기능은 하루에 한번 사용할 수 있습니다.\n도움을 완료하시겠습니까? ');"style="float: right; margin-right:5px; padding:4px 5px 4px 5px; font-size:smaller">
                       <img src="{% static 'img/complete2.png' %}" alt="" />
                     </a>
                     {% endif %}

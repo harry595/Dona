@@ -22,13 +22,13 @@
       {% if form.errors %}
       {% for field in form %}
           {% for error in field.errors %}
-              <div class="alert alert-danger"  style="text-align:center;">
+              <div class="alert alert-danger"  style="text-align:center; margin-bottom: 0px;">
                   <strong>{{ error|escape }}</strong>
               </div>
           {% endfor %}
       {% endfor %}
       {% for error in form.non_field_errors %}
-          <div class="alert alert-danger" style="text-align:center;">
+          <div class="alert alert-danger" style="text-align:center; margin-bottom: 0px;">
               <strong>{{ error|escape }}</strong>
           </div>
       {% endfor %}
