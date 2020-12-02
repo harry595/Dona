@@ -2364,7 +2364,7 @@ ul {
 @media (max-width: 575px) {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
-    height: 650px;
+    height: 120%;
     background-color: #FBF7F2;
   }
 }
@@ -2372,7 +2372,7 @@ ul {
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
-    height: 650px;
+    height: 120%;
     background-color: #FBF7F2;
   }
 }
@@ -2380,7 +2380,7 @@ ul {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
-    height: 700px;
+    height: 120%;
     background-color: #FBF7F2;
   }
 }
@@ -2389,7 +2389,7 @@ ul {
   /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part {
     background-size: cover;
-    height: 650px;
+    height: 120%;
   }
 }
 
@@ -2466,7 +2466,7 @@ ul {
   .banner_part .banner_text {
     text-align: center;
     padding-top: 0px;
-    height: 650px;
+    height:120%;
   }
 }
 
@@ -2475,7 +2475,7 @@ ul {
   .banner_part .banner_text {
     text-align: center;
     padding-top: 0px;
-    height: 650px;
+    height:120%;
   }
 }
 
@@ -2491,7 +2491,7 @@ ul {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 28, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_banner.scss */
   .banner_part .banner_text {
-    height: 650px;
+    height:120%;
   }
 }
 

@@ -230,6 +230,24 @@ def get_context_data(self, **kwargs):
 
 
 
+@login_required
+def detail(request, id):
+    try:
+        board = help_board.objects.get(pk=id)
+        form = CommentForm()
+    except board.DoesNotExist:
+        raise Http404("Does not exist!")
+    return render(request, 'detail.html', {'board': board,'form':form})
+
+@login_required
+def region_detail(request, id):
+    try:
+        board = region_board.objects.get(pk=id)
+        form = RegionCommentForm()
+    except board.DoesNotExist:
+        raise Http404("Does not exist!")
+    return render(request, 'regiondetail.html', {'board': board,'form':form})
+
 
 @login_required
 def new_post(request):
@@ -249,10 +267,10 @@ def new_post(request):
                 writer = user
             )
             new_board.save()
-            return redirect('help_board_list')
+            return HttpResponseRedirect('/help/{}'.format(new_board.id))
     else:
         form = PostForm()
-    return render(request, 'post.html', {'form': form })
+    return render(request,'post.html', {'form': form })
 
 @login_required
 def region_new_post(request):
@@ -270,28 +288,10 @@ def region_new_post(request):
                 writer = user
             )
             new_board.save()
-            return redirect('region_board_list')
+            return HttpResponseRedirect('/region_board/{}'.format(new_board.id))
     else:
         form = RegionPostForm()
     return render(request, 'region_post.html', {'form': form })
-
-@login_required
-def detail(request, id):
-    try:
-        board = help_board.objects.get(pk=id)
-        form = CommentForm()
-    except board.DoesNotExist:
-        raise Http404("Does not exist!")
-    return render(request, 'detail.html', {'board': board,'form':form})
-
-@login_required
-def region_detail(request, id):
-    try:
-        board = region_board.objects.get(pk=id)
-        form = RegionCommentForm()
-    except board.DoesNotExist:
-        raise Http404("Does not exist!")
-    return render(request, 'regiondetail.html', {'board': board,'form':form})
 
 @login_required
 def delete(request, id):

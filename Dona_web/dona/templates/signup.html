@@ -44,10 +44,10 @@
               <form method="post" >
                 {% csrf_token %}
                 <input type="text" name="username" class="fadeIn second" maxlength="150" minlength="4" required id="id_username" placeholder="ID" maxlength="150" minlength="6">
-                <input type="text" name="email" class="fadeIn second" required id="id_email" placeholder="E-mail" maxlength="150" minlength="6">
+                <input type="email" name="email" class="fadeIn second" required id="id_email" placeholder="E-mail" maxlength="150" minlength="6">
                 <input type="password" name="password1" class="fadeIn third" required id="id_password1"  placeholder="password" maxlength="150" minlength="6">
                 <input type="password" name="password2" class="fadeIn third" required id="id_password2" placeholder="confirm password" maxlength="150" minlength="6">
-                <input type="text" class="fadeIn fourth" name="Nickname" required id="id_Nickname" placeholder="Nickname" maxlength="10" minlength="1">
+                <input type="text" class="fadeIn fourth" name="Nickname" required id="id_Nickname" placeholder="Nickname" maxlength="6" minlength="2">
                 <input class="btn btn-info mt-3" class="fadeIn fourth" type="submit" name="submit" value="Sign up" />
               </form>
             </div>
